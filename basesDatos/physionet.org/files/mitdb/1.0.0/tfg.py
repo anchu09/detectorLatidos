@@ -93,7 +93,9 @@ def detector_latidos(datasetDATOS,nombrefichero):
     f.close()   
 
 
-    os.system("wrann -r "+nombrefichero+" -a myqrs")
+    #os.system("wrann -r "+nombrefichero+" -a myqrs")
+    
+    os.system("cat "+nombrefichero+".csv | wrann -r"+nombrefichero+" -a myqrs")
     
     os.system("rdann -r "+nombrefichero+" -a myqrs>./MyqrsLeible/"+nombrefichero+".csv") 
 
