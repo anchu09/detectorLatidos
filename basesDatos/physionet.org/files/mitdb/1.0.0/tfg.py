@@ -81,26 +81,13 @@ def detector_latidos(datasetDATOS,nombrefichero):
         tiempostr=segundos_a_segundos_minutos_y_horas(tiempo)
         
         
-        # '{:5d}---{:5d}FIN'.format(12, 123) # - y FIN no son relevantes, 
         
         stringEspacios=cadenaEspacios(len(tiempostr))
         stringtiempo= stringEspacios+tiempostr
         
-        string=stringtiempo+'{:9d}{:6d}{:5d}{:5d}{:5d}'.format(pico,0,0,0,95)+"\n"
         string=stringtiempo+'{:9d}'.format(pico)+'     N{:5d}{:5d}{:5d}'.format(0,0,95)+"\n"
         
-        # if (pico>0   and pico<9):
-        #     string="\t"+tiempostr+"\t"+str(pico)+"   \tN\t0\t0\t95\n"
 
-        # elif (pico>9   and pico<100):
-        #     string="\t"+tiempostr+"\t"+str(pico)+"  \tN\t0\t0\t95\n"
-
-        
-        # elif (pico>99   and pico<1000):
-            
-        #     string="\t"+tiempostr+"\t"+str(pico)+" \tN\t0\t0\t95\n"
-            
-        # else:string="\t"+tiempostr+"\t"+str(pico)+"\tN\t0\t0\t95\n"
 
 
                 
@@ -110,13 +97,12 @@ def detector_latidos(datasetDATOS,nombrefichero):
     f.close()   
 
 
-    #os.system("wrann -r "+nombrefichero+" -a myqrs")
     
-    os.system("cat "+nombrefichero+".csv | wrann -r"+nombrefichero+" -a myqrs")
+    os.system("cat "+nombrefichero+".csv | wrann -r "+nombrefichero+" -a myqrs")
     
     os.system("rdann -r "+nombrefichero+" -a myqrs>./MyqrsLeible/"+nombrefichero+".csv") 
 
-    # os.system("bxb -r "+nombrefichero +" -a atr myqrs")
+    os.system("bxb -r "+nombrefichero +" -a atr myqrs")
     
 
     
