@@ -354,6 +354,7 @@ model.compile(optimizer="adam", loss="categorical_crossentropy")
 model.fit_generator(train_data_generator, epochs=5)
 
 test_predictions = model.predict(test_data_generator)
+#aquí mooving average
 max_index = tf.argmax(test_predictions, axis=-1)
 
 one_hot_output = tf.one_hot(max_index, depth=24)
@@ -392,37 +393,63 @@ lista_archivos_resultado = set([elem[32:35] for elem in lista_paths_test_y])
 
 
 fecha_actual = datetime.now().strftime("%Y-%m-%d_%H-%M")
-fecha_actual=fecha_actual+str(np.random(10000))
-for archivo in lista_archivos_resultado:
+fecha_actual=fecha_actual+str(np.random.randint(0, 10000))
     
 
-    carpeta_actual = os.path.join("./resultados/", fecha_actual)
-    os.makedirs(carpeta_actual, exist_ok=True)
+carpeta_actual = os.path.join("./resultados/", fecha_actual)
+os.makedirs(carpeta_actual, exist_ok=True)
+
+
+
+
+frecMuestreo=360
+for col_num in np.arange(len(lista_archivos_resultado)):
+    f = open ("./resultados/"+fecha_actual+"/"+str(list(lista_archivos_resultado)[col_num])+".csv",'w')
+
+    columna_actual=matriz_nueva[:,col_num]
+    matriz=np.column_stack((np.arange(650000),columna_actual))
     
-
-
-    f = open ("./resultados/"+fecha_actual+"/"+archivo+".csv",'w')
-
-    frecMuestreo=360
-    for col in np.arange(factor):
-        columna_actual=matriz_nueva[:,col]
-        matriz=np.column_stack((np.arange(650000),columna_actual))
-        
-        for indice in np.arange(650000):
-            if matriz[indice,1]=='Z':
-                continue
-            else:
-                
-                tiempo=int(matriz[indice,0])/360
-                tiempostr=segundos_a_segundos_minutos_y_horas(tiempo)
-                
-                
-                stringEspacios=cadenaEspacios(len(tiempostr))
-                stringtiempo= stringEspacios+tiempostr
-                
-                string=stringtiempo+'{:9d}'.format(int(matriz[indice,0]))+'     '+matriz[indice,1]+'{:5d}{:5d}{:5d}'.format(0,0,0)+"\n"
-                f.write(string)
     
+    # deshacer la window
+    for indice in np.arange(650000):
+        if matriz[indice,1]=='Z':
+            continue
+        else: 
+            latido_actual=matriz[indice,1]
+            indice_adelantado=indice
+            while(True):
+                if indice_adelantado>=650000:
+                    break
+                    
+                elif latido_actual == matriz[indice_adelantado,1]:
+                    indice_adelantado+=1
+                    
+                    
+                else:
+                    break
+            ancho_latido= indice_adelantado-indice
+            for muestra in np.arange(indice, indice_adelantado):
+                if muestra== int((indice+indice_adelantado)/2):
+                    continue
+                else:
+                    matriz[muestra,1]='Z'
+            indice=indice_adelantado
+    
+    for indice in np.arange(650000):
+        if matriz[indice,1]=='Z':
+            continue
+        else:
+            
+            tiempo=int(matriz[indice,0])/360
+            tiempostr=segundos_a_segundos_minutos_y_horas(tiempo)
+            
+            
+            stringEspacios=cadenaEspacios(len(tiempostr))
+            stringtiempo= stringEspacios+tiempostr
+            
+            string=stringtiempo+'{:9d}'.format(int(matriz[indice,0]))+'     '+matriz[indice,1]+'{:5d}{:5d}{:5d}'.format(0,0,0)+"\n"
+            f.write(string)
+    f.close()
 
 
             
