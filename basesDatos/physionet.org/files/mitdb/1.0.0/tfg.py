@@ -17,6 +17,10 @@ from sklearn.compose import ColumnTransformer
 import random
 from tensorflow import keras
 from tensorflow.keras.utils import Sequence
+import tensorflow as tf
+from datetime import datetime
+import shutil
+
 
 #leemos todos los archivos de la carpeta
 
@@ -267,7 +271,7 @@ datasetCustom = datasetCustom.toarray()
 #     aux = np.concatenate((columns_to_keep, aux[:, :24], aux[:, 26:]), axis=1)
 
 #     newpandas=pd.DataFrame(aux)
-#     newpandas.to_csv("./window_encoder/"+fic+".csv", index=False, header=False)
+#     newpandas.iloc[:,2:-3].to_csv("./window_encoder/"+fic+".csv", index=False, header=False)
 
 #     diccionarioAnotacionesencoder.pop(filename[(len(path)+1):len(filename)-4])
 
@@ -280,35 +284,45 @@ factor= int(48*0.3)#el 30% de los archivos va a ser para predecir
 numeros_posibles=list(diccionarioDatos.keys())
 x_test = random.sample(numeros_posibles, factor)
 
+
 x_train=[]
 for numero in numeros_posibles:
     if numero not in x_test:
         x_train.append(numero)
     
-path_x="./datosNormalizados/"
+path_x="./senales_troceadas/ecgs/"
 
-path_y="./window_encoder/"
+path_y="./senales_troceadas/anotaciones/"
 
 lista_paths_test_y=[]
 lista_paths_test_x=[]
 
 for numero_test in x_test:
-    lista_paths_test_x.append(path_x+str(numero_test)+".csv")
+    filesx = glob.glob(path_x+str(numero_test)+"/*.csv")
 
-    lista_paths_test_y.append(path_y+str(numero_test)+".csv")
+    lista_paths_test_x.extend(filesx)
+    filesy=glob.glob(path_y+str(numero_test)+"/*.csv")
+    lista_paths_test_y.extend(filesy)
 
 lista_paths_train_y=[]
 lista_paths_train_x=[]
 for numero_train in x_train:
-    lista_paths_train_x.append(path_x+str(numero_train)+".csv")
-    lista_paths_train_y.append(path_y+str(numero_train)+".csv")
+    filesx2 = glob.glob(path_x+str(numero_train)+"/*.csv")
+
+    lista_paths_train_x.extend(filesx2)
+    
+    filesy2 = glob.glob(path_y+str(numero_train)+"/*.csv")
+
+    lista_paths_train_y.extend(filesy2)
 
 
 class CustomDataGenerator(Sequence):
+    # def __init__(self, x_filenames, y_filenames, batch_size, block_size, l=650000):
     def __init__(self, x_filenames, y_filenames, batch_size):
         self.x_filenames = x_filenames
         self.y_filenames = y_filenames
         self.batch_size = batch_size
+        # self.l = l
 
     def __len__(self):
         return int(np.ceil(len(self.x_filenames) / float(self.batch_size)))
@@ -317,62 +331,128 @@ class CustomDataGenerator(Sequence):
         batch_x_filenames = self.x_filenames[idx * self.batch_size:(idx + 1) * self.batch_size]
         batch_y_filenames = self.y_filenames[idx * self.batch_size:(idx + 1) * self.batch_size]
 
-      
+
         batch_x =np.asarray([np.loadtxt(filename) for filename in batch_x_filenames]).astype(np.float32)
-        batch_y = np.asarray([np.loadtxt(filename,delimiter=",") for filename in batch_y_filenames])[0].astype(np.float32)
+        batch_y = np.asarray([np.loadtxt(filename,delimiter="\,") for filename in batch_y_filenames]).astype(np.float32)
        
 
         return batch_x, batch_y
 
+train_data_generator = CustomDataGenerator(lista_paths_train_x, lista_paths_train_y, batch_size=130)
 
-train_data_generator = CustomDataGenerator(lista_paths_train_x, lista_paths_train_y, batch_size=8)
-test_data_generator = CustomDataGenerator(lista_paths_test_x, lista_paths_test_y, batch_size=8)
+test_data_generator = CustomDataGenerator(lista_paths_test_x, lista_paths_test_y, batch_size=130)
 
 
 model = keras.models.Sequential([
-    keras.layers.Dense(8, activation="relu"),
-    keras.layers.Dense(29)
+    keras.layers.Dense(128, activation="relu"),
+    keras.layers.Dense(128, activation="relu"),
+    keras.layers.Dense(24, activation="softmax")
 ])
 
-model.compile(optimizer="adam", loss="mse")
+model.compile(optimizer="adam", loss="categorical_crossentropy")
 
 model.fit_generator(train_data_generator, epochs=5)
 
 test_predictions = model.predict(test_data_generator)
+max_index = tf.argmax(test_predictions, axis=-1)
 
-# test_loss = model.evaluate(test_data_generator, test_predictions)
+one_hot_output = tf.one_hot(max_index, depth=24)
 
-#matrix del mas alto
-#desencodificar
+one_hot_output = one_hot_output.numpy()
 
-# # f = open (nombrefichero+".csv",'w')
 
-# # frecMuestreo=360
-# # for pico in picos:
-# #     tiempo=pico/360
-# #     tiempostr=segundos_a_segundos_minutos_y_horas(tiempo)
+
+
+
+decoded_labels = []
+for i in range(one_hot_output.shape[0]): # iterar sobre las 14 filas
+    print(i)
+    for j in range(one_hot_output.shape[1]): # iterar sobre las 650000 muestras
+        label_encoded = np.argmax(one_hot_output[i,j,:]) # obtener el índice del valor máximo
+        label_decoded = labelencoder.inverse_transform([label_encoded])[0] # decodificar la etiqueta
+        decoded_labels.append(label_decoded)
+
+decoded_labels = np.transpose(np.asarray(decoded_labels).reshape(one_hot_output.shape[0], one_hot_output.shape[1]))
+
+
+matriz_nueva = np.empty((650000, factor),dtype='U1')
+rg_min=0
+rg_max=130
+for i in np.arange(14):
+    fila_actual=np.empty(0)
+    contdor=0
+    for k in np.arange(rg_min,rg_max):
+        contdor+=1
+        fila_actual=np.concatenate((fila_actual, decoded_labels[:, int(k)]))
+    rg_min=rg_max
+    rg_max=rg_max+130
+    matriz_nueva[:,i]=fila_actual
+
+lista_archivos_resultado = set([elem[32:35] for elem in lista_paths_test_y])
+
+
+fecha_actual = datetime.now().strftime("%Y-%m-%d_%H-%M")
+fecha_actual=fecha_actual+str(np.random(10000))
+for archivo in lista_archivos_resultado:
     
-    
-# #     stringEspacios=cadenaEspacios(len(tiempostr))
-# #     stringtiempo= stringEspacios+tiempostr
-    
-# #     string=stringtiempo+'{:9d}'.format(pico)+'     N{:5d}{:5d}{:5d}'.format(0,0,95)+"\n"
+
+    carpeta_actual = os.path.join("./resultados/", fecha_actual)
+    os.makedirs(carpeta_actual, exist_ok=True)
     
 
+
+    f = open ("./resultados/"+fecha_actual+"/"+archivo+".csv",'w')
+
+    frecMuestreo=360
+    for col in np.arange(factor):
+        columna_actual=matriz_nueva[:,col]
+        matriz=np.column_stack((np.arange(650000),columna_actual))
+        
+        for indice in np.arange(650000):
+            if matriz[indice,1]=='Z':
+                continue
+            else:
+                
+                tiempo=int(matriz[indice,0])/360
+                tiempostr=segundos_a_segundos_minutos_y_horas(tiempo)
+                
+                
+                stringEspacios=cadenaEspacios(len(tiempostr))
+                stringtiempo= stringEspacios+tiempostr
+                
+                string=stringtiempo+'{:9d}'.format(int(matriz[indice,0]))+'     '+matriz[indice,1]+'{:5d}{:5d}{:5d}'.format(0,0,0)+"\n"
+                f.write(string)
+    
 
 
             
             
-# #     f.write(string)
-
-
-
     
-#     # os.system("cat "+nombrefichero+".csv | wrann -r "+nombrefichero+" -a myqrs")
-    
-#     # os.system("rdann -r "+nombrefichero+" -a myqrs>./MyqrsLeible/"+nombrefichero+".csv") 
+ruta_directorio=os.getcwd()
+ruta_carpeta = os.path.join(ruta_directorio, "resultados/"+fecha_actual)
+print(ruta_carpeta)
 
-#     # os.system("bxb -r "+nombrefichero +" -a atr myqrs")
+for fichero_atr in lista_archivos_resultado:
+    ruta_archivo = os.path.join(ruta_directorio, fichero_atr+".atr")
+    print(ruta_archivo)
+    ruta_copia = os.path.join(ruta_carpeta, fichero_atr+".atr")
+    shutil.copy(ruta_archivo, ruta_copia)
+
+for fichero_hea in lista_archivos_resultado:
+    ruta_archivo = os.path.join(ruta_directorio, fichero_hea+".hea")
+    ruta_copia = os.path.join(ruta_carpeta, fichero_hea+".hea")
+    shutil.copy(ruta_archivo, ruta_copia)
+
+
+carpeta_actual2 = os.path.join("./MyqrsLeible/", fecha_actual)
+os.makedirs(carpeta_actual2, exist_ok=True)
+for nombrefichero in lista_archivos_resultado:
+
+    os.system("cat ./resultados/"+fecha_actual+"/"+nombrefichero+".csv | wrann -r ./resultados/"+fecha_actual+"/"+nombrefichero+" -a myqrs")
+    
+    os.system("rdann -r ./resultados/"+fecha_actual+"/"+nombrefichero+" -a myqrs>./MyqrsLeible/"+fecha_actual+"/"+nombrefichero+".csv") 
+    
+    os.system("bxb -r ./resultados/"+fecha_actual+"/"+nombrefichero +" -a atr myqrs")
 
 
 
