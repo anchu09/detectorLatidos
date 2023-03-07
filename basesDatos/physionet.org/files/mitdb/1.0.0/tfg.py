@@ -355,7 +355,14 @@ model.fit_generator(train_data_generator, epochs=5)
 
 test_predictions = model.predict(test_data_generator)
 #aquí mooving average
-max_index = tf.argmax(test_predictions, axis=-1)
+window=5
+test_predictions_window = np.apply_along_axis(lambda x: np.convolve(x, np.ones(window), mode='same') / window, axis=0, arr=test_predictions)
+
+
+
+max_index = tf.argmax(test_predictions_window, axis=-1)
+
+# max_index = tf.argmax(test_predictions, axis=-1)
 
 one_hot_output = tf.one_hot(max_index, depth=24)
 
@@ -367,7 +374,6 @@ one_hot_output = one_hot_output.numpy()
 
 decoded_labels = []
 for i in range(one_hot_output.shape[0]): # iterar sobre las 14 filas
-    print(i)
     for j in range(one_hot_output.shape[1]): # iterar sobre las 650000 muestras
         label_encoded = np.argmax(one_hot_output[i,j,:]) # obtener el índice del valor máximo
         label_decoded = labelencoder.inverse_transform([label_encoded])[0] # decodificar la etiqueta
@@ -392,8 +398,7 @@ for i in np.arange(14):
 lista_archivos_resultado = set([elem[32:35] for elem in lista_paths_test_y])
 
 
-fecha_actual = datetime.now().strftime("%Y-%m-%d_%H-%M")
-fecha_actual=fecha_actual+str(np.random.randint(0, 10000))
+fecha_actual = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     
 
 carpeta_actual = os.path.join("./resultados/", fecha_actual)
@@ -457,11 +462,9 @@ for col_num in np.arange(len(lista_archivos_resultado)):
     
 ruta_directorio=os.getcwd()
 ruta_carpeta = os.path.join(ruta_directorio, "resultados/"+fecha_actual)
-print(ruta_carpeta)
 
 for fichero_atr in lista_archivos_resultado:
     ruta_archivo = os.path.join(ruta_directorio, fichero_atr+".atr")
-    print(ruta_archivo)
     ruta_copia = os.path.join(ruta_carpeta, fichero_atr+".atr")
     shutil.copy(ruta_archivo, ruta_copia)
 
