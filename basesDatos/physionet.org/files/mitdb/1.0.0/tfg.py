@@ -279,9 +279,17 @@ datasetCustom = datasetCustom.toarray()
 
 
 
-factor= int(48*0.3)#el 30% de los archivos va a ser para predecir
 
-numeros_posibles=list(diccionarioDatos.keys())
+# numeros_posibles=list(diccionarioDatos.keys())
+
+
+
+#voy a probar solo con los ficheros de anotaciones N
+numeros_posibles=[100, 101, 103, 105, 108, 112, 113, 114, 115, 116, 117,
+           121, 122, 123, 201, 202, 205, 209, 215, 219,
+           220,230 ,234]
+factor= int(len(numeros_posibles)*0.2)
+
 x_test = random.sample(numeros_posibles, factor)
 
 
@@ -289,10 +297,15 @@ x_train=[]
 for numero in numeros_posibles:
     if numero not in x_test:
         x_train.append(numero)
-    
-path_x="./senales_troceadas/ecgs/"
 
+#troceo de 5000
+path_x="./senales_troceadas/ecgs/"
 path_y="./senales_troceadas/anotaciones/"
+
+
+# #troceo de 10000
+# path_x="./senales_troceada2/ecgs/"
+# path_y="./senales_troceada2/anotaciones/"
 
 lista_paths_test_y=[]
 lista_paths_test_x=[]
@@ -357,9 +370,6 @@ test_predictions = model.predict(test_data_generator)
 #aquí mooving average
 window=5
 test_predictions_window = np.apply_along_axis(lambda x: np.convolve(x, np.ones(window), mode='same') / window, axis=0, arr=test_predictions)
-
-
-
 max_index = tf.argmax(test_predictions_window, axis=-1)
 
 # max_index = tf.argmax(test_predictions, axis=-1)
@@ -384,15 +394,17 @@ decoded_labels = np.transpose(np.asarray(decoded_labels).reshape(one_hot_output.
 
 matriz_nueva = np.empty((650000, factor),dtype='U1')
 rg_min=0
-rg_max=130
-for i in np.arange(14):
+# rg_max=130#para separacion de 5000
+rg_max=65#para separacion de 10000
+for i in np.arange(factor):
     fila_actual=np.empty(0)
     contdor=0
     for k in np.arange(rg_min,rg_max):
         contdor+=1
         fila_actual=np.concatenate((fila_actual, decoded_labels[:, int(k)]))
     rg_min=rg_max
-    rg_max=rg_max+130
+    # rg_max=rg_max+130#para separacion de 5000
+    rg_max=rg_max+65#para separacion de 10000
     matriz_nueva[:,i]=fila_actual
 
 lista_archivos_resultado = set([elem[32:35] for elem in lista_paths_test_y])
@@ -482,7 +494,7 @@ for nombrefichero in lista_archivos_resultado:
     
     os.system("rdann -r ./resultados/"+fecha_actual+"/"+nombrefichero+" -a myqrs>./MyqrsLeible/"+fecha_actual+"/"+nombrefichero+".csv") 
     
-    os.system("bxb -r ./resultados/"+fecha_actual+"/"+nombrefichero +" -a atr myqrs")
+    os.system("bxb -r ./resultados/"+fecha_actual+"/"+nombrefichero +" -a atr myqrs >> ./resultados/"+fecha_actual+"/resultados_bxb.txt")
 
 
 

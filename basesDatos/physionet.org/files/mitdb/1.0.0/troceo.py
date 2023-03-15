@@ -19,7 +19,7 @@ from tensorflow import keras
 from tensorflow.keras.utils import Sequence
 import tensorflow as tf
 import csv
-path= 'window_encoder'
+path= 'datosNormalizados'
 
 files = glob.glob(path + "/*.csv")
 
@@ -32,8 +32,8 @@ for filename in files:
 
     for key in diccionarioDatos.keys():
         
-        for i, chunk in enumerate(diccionarioDatos[key].groupby(diccionarioDatos[key].index // 5000)):
-            chunk_filename = f"./senales_troceadas/anotaciones/{key}/{key}_part{i+1}.csv"
+        for i, chunk in enumerate(diccionarioDatos[key].groupby(diccionarioDatos[key].index // 10000)):
+            chunk_filename = f"./senales_troceadas2/ecg/{key}/{key}_part{i+1}.csv"
             chunk[1].to_csv(chunk_filename, index=False, header=False, quoting=csv.QUOTE_NONE,escapechar='\\')
 
 
