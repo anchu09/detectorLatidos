@@ -280,15 +280,15 @@ datasetCustom = datasetCustom.toarray()
 
 
 
-# numeros_posibles=list(diccionarioDatos.keys())
+numeros_posibles=list(diccionarioDatos.keys())
 
 
 
 #voy a probar solo con los ficheros de anotaciones N
-numeros_posibles=[100, 101, 103, 105, 108, 112, 113, 114, 115, 116, 117,
-           121, 122, 123, 201, 202, 205, 209, 215, 219,
-           220,230 ,234]
-factor= int(len(numeros_posibles)*0.2)
+# numeros_posibles=[100, 101, 103, 105, 108, 112, 113, 114, 115, 116, 117,
+#            121, 122, 123, 201, 202, 205, 209, 215, 219,
+#            220,230 ,234]
+factor= int(len(numeros_posibles)*0.3)
 
 x_test = random.sample(numeros_posibles, factor)
 
@@ -328,6 +328,10 @@ for numero_train in x_train:
 
     lista_paths_train_y.extend(filesy2)
 
+lista_paths_test_y=sorted(lista_paths_test_y)
+lista_paths_test_x=sorted(lista_paths_test_x)
+lista_paths_train_y=sorted(lista_paths_train_y)
+lista_paths_train_x=sorted(lista_paths_train_x)
 
 class CustomDataGenerator(Sequence):
     # def __init__(self, x_filenames, y_filenames, batch_size, block_size, l=650000):
@@ -368,9 +372,26 @@ model.fit_generator(train_data_generator, epochs=5)
 
 test_predictions = model.predict(test_data_generator)
 #aquí mooving average
-window=5
-test_predictions_window = np.apply_along_axis(lambda x: np.convolve(x, np.ones(window), mode='same') / window, axis=0, arr=test_predictions)
-max_index = tf.argmax(test_predictions_window, axis=-1)
+
+for i in np.arange(len(lista_paths_test_x)):
+    
+    
+    ecg_actual=np.asarray(np.loadtxt(lista_paths_test_x[i])).astype(np.float32)
+
+    plt.plot(ecg_actual[:,0])
+    plt.title(lista_paths_test_x[i][29:-4])
+    for k in np.arange(24):
+        plt.plot(np.arange(len(test_predictions[i])),test_predictions[i][:,k])
+        # plt.xlim(0,1000)
+        # plt.ylim(-0.1,1.1)
+    plt.figure()
+
+
+max_index = tf.argmax(test_predictions, axis=-1)
+
+# window=5
+# test_predictions_window = np.apply_along_axis(lambda x: np.convolve(x, np.ones(window), mode='same') / window, axis=0, arr=test_predictions)
+# max_index = tf.argmax(test_predictions_window, axis=-1)
 
 # max_index = tf.argmax(test_predictions, axis=-1)
 
@@ -394,8 +415,8 @@ decoded_labels = np.transpose(np.asarray(decoded_labels).reshape(one_hot_output.
 
 matriz_nueva = np.empty((650000, factor),dtype='U1')
 rg_min=0
-# rg_max=130#para separacion de 5000
-rg_max=65#para separacion de 10000
+rg_max=130#para separacion de 5000
+# rg_max=65#para separacion de 10000
 for i in np.arange(factor):
     fila_actual=np.empty(0)
     contdor=0
@@ -403,8 +424,8 @@ for i in np.arange(factor):
         contdor+=1
         fila_actual=np.concatenate((fila_actual, decoded_labels[:, int(k)]))
     rg_min=rg_max
-    # rg_max=rg_max+130#para separacion de 5000
-    rg_max=rg_max+65#para separacion de 10000
+    rg_max=rg_max+130#para separacion de 5000
+    # rg_max=rg_max+65#para separacion de 10000
     matriz_nueva[:,i]=fila_actual
 
 lista_archivos_resultado = set([elem[32:35] for elem in lista_paths_test_y])
@@ -421,8 +442,8 @@ os.makedirs(carpeta_actual, exist_ok=True)
 
 frecMuestreo=360
 for col_num in np.arange(len(lista_archivos_resultado)):
-    f = open ("./resultados/"+fecha_actual+"/"+str(list(lista_archivos_resultado)[col_num])+".csv",'w')
-
+    f = open ("./resultados/"+fecha_actual+"/"+str(sorted(list(lista_archivos_resultado))[col_num])+".csv",'w')
+ 
     columna_actual=matriz_nueva[:,col_num]
     matriz=np.column_stack((np.arange(650000),columna_actual))
     
@@ -475,12 +496,12 @@ for col_num in np.arange(len(lista_archivos_resultado)):
 ruta_directorio=os.getcwd()
 ruta_carpeta = os.path.join(ruta_directorio, "resultados/"+fecha_actual)
 
-for fichero_atr in lista_archivos_resultado:
+for fichero_atr in sorted(lista_archivos_resultado):
     ruta_archivo = os.path.join(ruta_directorio, fichero_atr+".atr")
     ruta_copia = os.path.join(ruta_carpeta, fichero_atr+".atr")
     shutil.copy(ruta_archivo, ruta_copia)
 
-for fichero_hea in lista_archivos_resultado:
+for fichero_hea in sorted(lista_archivos_resultado):
     ruta_archivo = os.path.join(ruta_directorio, fichero_hea+".hea")
     ruta_copia = os.path.join(ruta_carpeta, fichero_hea+".hea")
     shutil.copy(ruta_archivo, ruta_copia)
@@ -488,7 +509,7 @@ for fichero_hea in lista_archivos_resultado:
 
 carpeta_actual2 = os.path.join("./MyqrsLeible/", fecha_actual)
 os.makedirs(carpeta_actual2, exist_ok=True)
-for nombrefichero in lista_archivos_resultado:
+for nombrefichero in sorted(lista_archivos_resultado):
 
     os.system("cat ./resultados/"+fecha_actual+"/"+nombrefichero+".csv | wrann -r ./resultados/"+fecha_actual+"/"+nombrefichero+" -a myqrs")
     
