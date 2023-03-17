@@ -381,11 +381,13 @@ for i in np.arange(len(lista_paths_test_x)):
     plt.plot(ecg_actual[:,0])
     plt.title(lista_paths_test_x[i][29:-4])
     for k in np.arange(24):
-        plt.plot(np.arange(len(test_predictions[i])),test_predictions[i][:,k])
+        plt.plot(np.arange(len(test_predictions[i])),test_predictions[i][:,k],label=str(k))
         # plt.xlim(0,1000)
         # plt.ylim(-0.1,1.1)
     plt.figure()
-
+    plt.legend()
+    if i==300:
+        break
 
 max_index = tf.argmax(test_predictions, axis=-1)
 
