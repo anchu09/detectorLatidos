@@ -16,10 +16,11 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 import random
 from tensorflow import keras
-from tensorflow.keras.utils import Sequence
+from keras.utils import Sequence
 import tensorflow as tf
 from datetime import datetime
 import shutil
+from keras.layers import Input, Conv1D, MaxPooling1D, LayerNormalization, Flatten, Dense, Dropout,MultiHeadAttention
 
 
 #leemos todos los archivos de la carpeta
@@ -350,7 +351,7 @@ class CustomDataGenerator(Sequence):
 
 
         batch_x =np.asarray([np.loadtxt(filename) for filename in batch_x_filenames]).astype(np.float32)
-        batch_y = np.asarray([np.loadtxt(filename,delimiter="\,") for filename in batch_y_filenames]).astype(np.float32)
+        batch_y = np.asarray([np.loadtxt(filename,delimiter=',') for filename in batch_y_filenames]).astype(np.float32)
        
 
         return batch_x, batch_y
@@ -360,34 +361,56 @@ train_data_generator = CustomDataGenerator(lista_paths_train_x, lista_paths_trai
 test_data_generator = CustomDataGenerator(lista_paths_test_x, lista_paths_test_y, batch_size=130)
 
 
-model = keras.models.Sequential([
-    keras.layers.Dense(128, activation="relu"),
-    keras.layers.Dense(128, activation="relu"),
-    keras.layers.Dense(24, activation="softmax")
-])
+# model = keras.models.Sequential([
+#     keras.layers.Dense(128, activation="relu"),
+#     keras.layers.Dense(128, activation="relu"),
+#     keras.layers.Dense(24, activation="softmax")
+# ])
 
+# Especificar la forma de entrada
+input_shape = (5000, 2)
+# Capas convolucionales de extracción de características
+inputs = Input(shape=input_shape)
+x = Conv1D(4, kernel_size=3, strides=1, padding="same", activation="relu")(inputs)
+x = Conv1D(4, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+x = MaxPooling1D(pool_size=2)(x)
+x = Conv1D(8, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+x = Conv1D(8, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+x = MaxPooling1D(pool_size=2)(x)
+# Capa del transformer
+query = LayerNormalization()(x)
+key = LayerNormalization()(x)
+value = LayerNormalization()(x)
+attention_output = MultiHeadAttention(num_heads=2, key_dim=8, dropout=0.3)(query, value, key)
+x = LayerNormalization()(x + attention_output)
+# Capa de clasificación
+x = Flatten()(x)
+x = Dense(16, activation="relu")(x)
+x = Dropout(0.3)(x)
+x = Dense(24, activation="softmax")(x)
+# Crear modelo
+model = tf.keras.Model(inputs=inputs, outputs=x)
 model.compile(optimizer="adam", loss="categorical_crossentropy")
-
 model.fit_generator(train_data_generator, epochs=5)
-
 test_predictions = model.predict(test_data_generator)
 #aquí mooving average
 
-for i in np.arange(len(lista_paths_test_x)):
-    
-    
-    ecg_actual=np.asarray(np.loadtxt(lista_paths_test_x[i])).astype(np.float32)
-
-    plt.plot(ecg_actual[:,0])
-    plt.title(lista_paths_test_x[i][29:-4])
-    for k in np.arange(24):
-        plt.plot(np.arange(len(test_predictions[i])),test_predictions[i][:,k],label=str(k))
-        # plt.xlim(0,1000)
-        # plt.ylim(-0.1,1.1)
-    plt.figure()
-    plt.legend()
-    if i==300:
-        break
+# for i in np.arange(len(lista_paths_test_x)):
+#
+#
+#     ecg_actual=np.asarray(np.loadtxt(lista_paths_test_x[i])).astype(np.float32)
+#
+#     plt.plot(ecg_actual[:,0])
+#     plt.title(lista_paths_test_x[i][29:-4])
+#     for k in np.arange(24):
+#         plt.plot(np.arange(len(test_predictions[i])),test_predictions[i][:,k],label=str(k))
+#         # plt.xlim(0,1000)
+#         # plt.ylim(-0.1,1.1)
+#     plt.legend()
+#     plt.figure()
+#
+#     if i==300:
+#         break
 
 max_index = tf.argmax(test_predictions, axis=-1)
 
