@@ -6,7 +6,7 @@ Created on Fri Sep 23 16:27:37 2022
 @author: dani
 """
 
-import os 
+import os
 import numpy as np
 import pandas as pd
 import glob
@@ -20,9 +20,11 @@ from keras.utils import Sequence
 import tensorflow as tf
 from datetime import datetime
 import shutil
-from keras.layers import Input, Conv1D, MaxPooling1D, LayerNormalization, Flatten, Dense, Dropout,MultiHeadAttention
+from keras.layers import Input, Conv1D, MaxPooling1D, LayerNormalization, Flatten, Dense, Dropout, MultiHeadAttention, \
+    GlobalMaxPooling1D, Reshape
 
-
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+# tf.debugging.set_log_device_placement(True)
 #leemos todos los archivos de la carpeta
 
 #
@@ -66,9 +68,9 @@ def segundos_a_segundos_minutos_y_horas(segundos):
     segundos -= horas*60*60
     minutos = int(segundos/60)
     segundos -= minutos*60
-    
+
     if(segundos>=10):
-        
+
         secs=str(round(segundos,3)).ljust(6, '0')
     else:
         secs=str(round(segundos,3)).ljust(5, '0')
@@ -90,13 +92,13 @@ def to_seconds(time_str):
     return int(minutes) * 60 + int(seconds) + int(milliseconds) / 1000
 
 def fillzeros():
-    
+
         #colocaomos todas las lineas que contienen muestras donde es 0
         for key in diccionarioAnotaciones.keys():
             f = open("./anotacionesCompletasCeros/"+key+".csv", "w")
             limite_inferior=0
             print(key)
-            
+
 
             for index, fila in diccionarioAnotaciones[key].iterrows():
                 # print("la fila es")
@@ -106,7 +108,7 @@ def fillzeros():
                 # print(fila[1])
                 limite_superior=int(fila[1])
                 for i in np.arange(limite_inferior,limite_superior):
-                    t=i/360   
+                    t=i/360
                     t=np.round(t,4)
 
                     new_row = np.array([t,i,"Z","0","0","0"])
@@ -118,24 +120,24 @@ def fillzeros():
                     f.write(str(valor) + " ")
                 f.write("\n")
                 limite_inferior=int(fila[1])+1
-                
-            
+
+
             for k in np.arange(limite_superior+1,650000):
-                t=k/360   
+                t=k/360
                 t=np.round(t,4)
                 new_row = np.array([t,k,"Z","0","0","0"])
                 for valor in new_row:
                     f.write(str(valor) + " ")
-                f.write("\n")                
-            
+                f.write("\n")
+
             f.close()
-            
+
 def window():
-    
+
     path= 'anotacionesCompletasCeros'
-    
+
     files = glob.glob(path + "/*.csv")
-    
+
     for filename in files:
         data = []
         with open(filename) as file:
@@ -148,10 +150,10 @@ def window():
         diccionarioAnotacionesCeros[filename[(len(path)+1):len(filename)-4]] = pd.DataFrame(data)
         window_separado(0.15)
         diccionarioAnotacionesCeros.pop(filename[(len(path)+1):len(filename)-4])
-                
+
 
 def normalizarX():
-    
+
     for key in diccionarioDatos.keys():
         print(key)
         canal1=diccionarioDatos[key][1]
@@ -161,10 +163,10 @@ def normalizarX():
         canal2=diccionarioDatos[key][2]
         canal2_normalizado = (canal2 - canal2.mean()) / canal2.std()
         diccionarioDatos[key][2]=canal2_normalizado
-        
+
         print(len(diccionarioDatos[key]))
         diccionarioDatos[key].iloc[:,1:3].to_csv("./datosNormalizados/"+key+".csv", index=False, header=False,sep=' ')
-        
+
 
 diccionarioAnotacionesCeros={}
 
@@ -175,7 +177,7 @@ def window_separado(bandwidth):
     for key in diccionarioAnotacionesCeros.keys():
         print(key)
 
-        
+
         #ya tenemos el vector de las filas que hay que copiar
         listaMuestras = diccionarioAnotaciones[key].iloc[:, 1].values.astype(int)
         for valor in listaMuestras:
@@ -186,18 +188,18 @@ def window_separado(bandwidth):
                 valor_menos_muestras=0
             else:
                 valor_menos_muestras=valor-muestras
-                
+
             if valor+muestras>650000:
                 valor_mas_muestras=650000
-            
+
             else:
                 valor_mas_muestras=valor+muestras
-            
+
             for muestraVentana in np.arange(valor_menos_muestras,valor_mas_muestras):
-                
+
 
                 diccionarioAnotacionesCeros[key].loc[muestraVentana,diccionarioAnotacionesCeros[key].columns[2:]]=fila_a_copiar
-        
+
         diccionarioAnotacionesCeros[key].iloc[:,:].to_csv("./con_window_separado/"+key+".csv", index=False, header=False,sep=' ')
         #la ultima fila no la pongo que es mala
 
@@ -254,10 +256,10 @@ datasetCustom = datasetCustom.toarray()
 #                 continue
 #     diccionarioAnotacionesencoder[filename[(len(path)+1):len(filename)-4]] = pd.DataFrame(data)
 #     fic=filename[(len(path)+1):len(filename)-4]
-    
+
 #     print(fic)
-    
-   
+
+
 
 
 #     diccionarioAnotacionesencoder[fic][2]=labelencoder.transform(diccionarioAnotacionesencoder[fic][2])
@@ -324,7 +326,7 @@ for numero_train in x_train:
     filesx2 = glob.glob(path_x+str(numero_train)+"/*.csv")
 
     lista_paths_train_x.extend(filesx2)
-    
+
     filesy2 = glob.glob(path_y+str(numero_train)+"/*.csv")
 
     lista_paths_train_y.extend(filesy2)
@@ -352,14 +354,13 @@ class CustomDataGenerator(Sequence):
 
         batch_x =np.asarray([np.loadtxt(filename) for filename in batch_x_filenames]).astype(np.float32)
         batch_y = np.asarray([np.loadtxt(filename,delimiter=',') for filename in batch_y_filenames]).astype(np.float32)
-       
+
 
         return batch_x, batch_y
 
 train_data_generator = CustomDataGenerator(lista_paths_train_x, lista_paths_train_y, batch_size=130)
 
 test_data_generator = CustomDataGenerator(lista_paths_test_x, lista_paths_test_y, batch_size=130)
-
 
 # model = keras.models.Sequential([
 #     keras.layers.Dense(128, activation="relu"),
@@ -371,11 +372,15 @@ test_data_generator = CustomDataGenerator(lista_paths_test_x, lista_paths_test_y
 input_shape = (5000, 2)
 # Capas convolucionales de extracción de características
 inputs = Input(shape=input_shape)
-x = Conv1D(4, kernel_size=3, strides=1, padding="same", activation="relu")(inputs)
-x = Conv1D(4, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+
+x = Conv1D(8, kernel_size=3, strides=1, padding="same", activation="relu")(inputs)
+
+x = Conv1D(8, kernel_size=3, strides=1, padding="same", activation="relu")(x)
 x = MaxPooling1D(pool_size=2)(x)
 x = Conv1D(8, kernel_size=3, strides=1, padding="same", activation="relu")(x)
 x = Conv1D(8, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+# x = GlobalMaxPooling1D()(x)
+# x = Reshape((-1, 64))(x)
 x = MaxPooling1D(pool_size=2)(x)
 # Capa del transformer
 query = LayerNormalization()(x)
@@ -385,13 +390,17 @@ attention_output = MultiHeadAttention(num_heads=2, key_dim=8, dropout=0.3)(query
 x = LayerNormalization()(x + attention_output)
 # Capa de clasificación
 x = Flatten()(x)
-x = Dense(16, activation="relu")(x)
+x = Dense(32, activation="relu")(x)
 x = Dropout(0.3)(x)
+
 x = Dense(24, activation="softmax")(x)
 # Crear modelo
+print(x)
 model = tf.keras.Model(inputs=inputs, outputs=x)
 model.compile(optimizer="adam", loss="categorical_crossentropy")
-model.fit_generator(train_data_generator, epochs=5)
+print(train_data_generator)
+model.fit_generator(train_data_generator, epochs=10)
+
 test_predictions = model.predict(test_data_generator)
 #aquí mooving average
 
@@ -457,7 +466,7 @@ lista_archivos_resultado = set([elem[32:35] for elem in lista_paths_test_y])
 
 
 fecha_actual = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    
+
 
 carpeta_actual = os.path.join("./resultados/", fecha_actual)
 os.makedirs(carpeta_actual, exist_ok=True)
@@ -468,26 +477,26 @@ os.makedirs(carpeta_actual, exist_ok=True)
 frecMuestreo=360
 for col_num in np.arange(len(lista_archivos_resultado)):
     f = open ("./resultados/"+fecha_actual+"/"+str(sorted(list(lista_archivos_resultado))[col_num])+".csv",'w')
- 
+
     columna_actual=matriz_nueva[:,col_num]
     matriz=np.column_stack((np.arange(650000),columna_actual))
-    
-    
+
+
     # deshacer la window
     for indice in np.arange(650000):
         if matriz[indice,1]=='Z':
             continue
-        else: 
+        else:
             latido_actual=matriz[indice,1]
             indice_adelantado=indice
             while(True):
                 if indice_adelantado>=650000:
                     break
-                    
+
                 elif latido_actual == matriz[indice_adelantado,1]:
                     indice_adelantado+=1
-                    
-                    
+
+
                 else:
                     break
             ancho_latido= indice_adelantado-indice
@@ -497,27 +506,27 @@ for col_num in np.arange(len(lista_archivos_resultado)):
                 else:
                     matriz[muestra,1]='Z'
             indice=indice_adelantado
-    
+
     for indice in np.arange(650000):
         if matriz[indice,1]=='Z':
             continue
         else:
-            
+
             tiempo=int(matriz[indice,0])/360
             tiempostr=segundos_a_segundos_minutos_y_horas(tiempo)
-            
-            
+
+
             stringEspacios=cadenaEspacios(len(tiempostr))
             stringtiempo= stringEspacios+tiempostr
-            
+
             string=stringtiempo+'{:9d}'.format(int(matriz[indice,0]))+'     '+matriz[indice,1]+'{:5d}{:5d}{:5d}'.format(0,0,0)+"\n"
             f.write(string)
     f.close()
 
 
-            
-            
-    
+
+
+
 ruta_directorio=os.getcwd()
 ruta_carpeta = os.path.join(ruta_directorio, "resultados/"+fecha_actual)
 
@@ -537,9 +546,9 @@ os.makedirs(carpeta_actual2, exist_ok=True)
 for nombrefichero in sorted(lista_archivos_resultado):
 
     os.system("cat ./resultados/"+fecha_actual+"/"+nombrefichero+".csv | wrann -r ./resultados/"+fecha_actual+"/"+nombrefichero+" -a myqrs")
-    
-    os.system("rdann -r ./resultados/"+fecha_actual+"/"+nombrefichero+" -a myqrs>./MyqrsLeible/"+fecha_actual+"/"+nombrefichero+".csv") 
-    
+
+    os.system("rdann -r ./resultados/"+fecha_actual+"/"+nombrefichero+" -a myqrs>./MyqrsLeible/"+fecha_actual+"/"+nombrefichero+".csv")
+
     os.system("bxb -r ./resultados/"+fecha_actual+"/"+nombrefichero +" -a atr myqrs >> ./resultados/"+fecha_actual+"/resultados_bxb.txt")
 
 
