@@ -22,6 +22,7 @@ from datetime import datetime
 import shutil
 from keras.layers import Input, Conv1D, MaxPooling1D, LayerNormalization, Flatten, Dense, Dropout, MultiHeadAttention, \
     GlobalMaxPooling1D, Reshape, UpSampling1D
+os.chdir(os.getcwd()[:-len("proyecto")])
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 # tf.debugging.set_log_device_placement(True)
@@ -336,6 +337,18 @@ lista_paths_test_x=sorted(lista_paths_test_x)
 lista_paths_train_y=sorted(lista_paths_train_y)
 lista_paths_train_x=sorted(lista_paths_train_x)
 
+
+
+#EXPERIMENTO OVERFITTING
+lista_paths_train_x=lista_paths_test_x=lista_paths_test_x[:130]
+lista_paths_train_y=lista_paths_test_y=lista_paths_test_y[:130]
+factor=1
+
+print(lista_paths_train_x)
+print(lista_paths_train_y)
+print(lista_paths_test_x)
+print(lista_paths_test_y)
+
 class CustomDataGenerator(Sequence):
     # def __init__(self, x_filenames, y_filenames, batch_size, block_size, l=650000):
     def __init__(self, x_filenames, y_filenames, batch_size):
@@ -362,43 +375,43 @@ train_data_generator = CustomDataGenerator(lista_paths_train_x, lista_paths_trai
 
 test_data_generator = CustomDataGenerator(lista_paths_test_x, lista_paths_test_y, batch_size=130)
 
-# model = keras.models.Sequential([
-#     keras.layers.Dense(128, activation="relu"),
-#     keras.layers.Dense(128, activation="relu"),
-#     keras.layers.Dense(24, activation="softmax")
-# ])
+model = keras.models.Sequential([
+    keras.layers.Dense(128, activation="relu"),
+    keras.layers.Dense(128, activation="relu"),
+    keras.layers.Dense(24, activation="softmax")
+])
 
 print("holaa")
-
-# Especificar la forma de entrada
-input_shape = (5000, 2)
-# Capas convolucionales de extracción de características
-inputs = Input(shape=input_shape)
-x = Conv1D(32, kernel_size=3, strides=1, padding="same", activation="relu")(inputs)
-x = Conv1D(32, kernel_size=3, strides=1, padding="same", activation="relu")(x)
-x = MaxPooling1D(pool_size=2)(x)
-x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="relu")(x)
-x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="relu")(x)
-x = MaxPooling1D(pool_size=2)(x)
-x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="relu")(x)
-x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="relu")(x)
-x = MaxPooling1D(pool_size=2)(x)
-# Capa del transformer
-query = LayerNormalization()(x)
-key = LayerNormalization()(x)
-value = LayerNormalization()(x)
-attention_output = MultiHeadAttention(num_heads=2, key_dim=8, dropout=0.3)(query, value, key)
-x = LayerNormalization()(x + attention_output)
-#upsampling de 1250 a 5000
-x = UpSampling1D(8)(x)
-#aplicar la timedistributed
-x = Dense(48, activation="relu")(x)
-x = Dropout(0.3)(x)
-x = Dense(24, activation="softmax")(x)
-model = tf.keras.Model(inputs=inputs, outputs=x)
-
-
-
+#
+# # Especificar la forma de entrada
+# input_shape = (5000, 2)
+# # Capas convolucionales de extracción de características
+# inputs = Input(shape=input_shape)
+# x = Conv1D(32, kernel_size=3, strides=1, padding="same", activation="relu")(inputs)
+# x = Conv1D(32, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+# x = MaxPooling1D(pool_size=2)(x)
+# x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+# x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+# x = MaxPooling1D(pool_size=2)(x)
+# x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+# x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+# x = MaxPooling1D(pool_size=2)(x)
+# # Capa del transformer
+# query = LayerNormalization()(x)
+# key = LayerNormalization()(x)
+# value = LayerNormalization()(x)
+# attention_output = MultiHeadAttention(num_heads=2, key_dim=8, dropout=0.3)(query, value, key)
+# x = LayerNormalization()(x + attention_output)
+# #upsampling de 1250 a 5000
+# x = UpSampling1D(8)(x)
+# #aplicar la timedistributed
+# x = Dense(48, activation="relu")(x)
+# x = Dropout(0.3)(x)
+# x = Dense(24, activation="softmax")(x)
+# model = tf.keras.Model(inputs=inputs, outputs=x)
+#
+#
+#
 
 
 model.compile(optimizer="adam", loss="categorical_crossentropy")
@@ -412,22 +425,23 @@ model.fit_generator(train_data_generator, epochs=10)
 test_predictions = model.predict(test_data_generator)
 #aquí mooving average
 
-# for i in np.arange(len(lista_paths_test_x)):
-#
-#
-#     ecg_actual=np.asarray(np.loadtxt(lista_paths_test_x[i])).astype(np.float32)
-#
-#     plt.plot(ecg_actual[:,0])
-#     plt.title(lista_paths_test_x[i][29:-4])
-#     for k in np.arange(24):
-#         plt.plot(np.arange(len(test_predictions[i])),test_predictions[i][:,k],label=str(k))
-#         # plt.xlim(0,1000)
-#         # plt.ylim(-0.1,1.1)
-#     plt.legend()
-#     plt.figure()
-#
-#     if i==300:
-#         break
+for i in np.arange(len(lista_paths_test_x)):
+
+
+    ecg_actual=np.asarray(np.loadtxt(lista_paths_test_x[i])).astype(np.float32)
+
+    plt.plot(ecg_actual[:,0])
+    plt.title(lista_paths_test_x[i][29:-4])
+    for k in np.arange(24):
+        plt.plot(np.arange(len(test_predictions[i])),test_predictions[i][:,k],label=str(k))
+        plt.xlim(0,1000)
+        plt.ylim(-0.1,1.1)
+
+    plt.legend()
+    plt.show()
+
+    if i==300:
+        break
 print("ENTRENADO")
 max_index = tf.argmax(test_predictions, axis=-1)
 
@@ -558,6 +572,5 @@ for nombrefichero in sorted(lista_archivos_resultado):
     os.system("rdann -r ./resultados/"+fecha_actual+"/"+nombrefichero+" -a myqrs>./MyqrsLeible/"+fecha_actual+"/"+nombrefichero+".csv")
 
     os.system("bxb -r ./resultados/"+fecha_actual+"/"+nombrefichero +" -a atr myqrs >> ./resultados/"+fecha_actual+"/resultados_bxb.txt")
-
 
 

@@ -1,0 +1,26 @@
+Beat-by-beat comparison results for record ./resultados/2023-04-22_19-45-45/104
+Reference annotator: atr
+     Test annotator: myqrs
+
+               Algorithm
+        n    v    f    q    o    x
+   _______________________________
+ N |    0    0    0   79   19    0
+ V |    0    0    0    0    1    0
+ F |    0    0    0    0    0    0
+ Q |    0    0    0 1673   85    0
+ O |    0    0    0 8044
+ X |    0    0    0    0
+
+           QRS sensitivity:  94.35% (1752/1857)
+ QRS positive predictivity:  17.88% (1752/9796)
+           VEB sensitivity:   0.00% (0/1)
+ VEB positive predictivity:      -  (0/0)
+   VEB false positive rate:  0.000% (0/9796)
+
+
+  Beats missed in shutdown:   0.00% (0/1857)
+      N missed in shutdown:   0.00% (0/98)
+      V missed in shutdown:   0.00% (0/1)
+      F missed in shutdown:      -  (0/0)
+       Total shutdown time:     0 seconds

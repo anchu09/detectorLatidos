@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3a7a128d-a7db-4fd2-8d05-cf9d4772dc04" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/100.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/100.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/100.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/100.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/107.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/107.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/107.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/107.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/111.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/111.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/111.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/111.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/113.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/113.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/113.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/113.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/114.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/114.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/114.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/114.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/122.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/122.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/122.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/122.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/123.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/123.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/123.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/123.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/201.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/201.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/201.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/201.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/205.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/205.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/205.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/205.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/207.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/207.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/207.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/207.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/210.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/210.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/210.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/210.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/213.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/213.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/213.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/213.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/220.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/220.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/220.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/220.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/221.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/221.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/221.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/221.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-16_20-35-58/resultados_bxb.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/100.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/100.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/100.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/100.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/101.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/101.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/101.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/101.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/106.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/106.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/106.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/106.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/115.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/115.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/115.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/115.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/203.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/203.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/203.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/203.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/205.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/205.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/205.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/205.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/208.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/208.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/208.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/208.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/209.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/209.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/209.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/209.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/210.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/210.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/210.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/210.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/213.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/213.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/213.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/213.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/217.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/217.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/217.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/217.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/228.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/228.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/228.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/228.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/231.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/231.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/231.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/231.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/232.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/232.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/232.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/232.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-03-17_16-38-35/resultados_bxb.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/101.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/101.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/101.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/102.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/102.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/102.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/108.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/108.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/108.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/114.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/114.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/114.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/117.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/117.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/117.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/118.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/118.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/118.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/121.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/121.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/121.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/122.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/122.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/122.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/201.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/201.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/201.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/208.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/208.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/208.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/209.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/209.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/209.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/219.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/219.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/219.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/223.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/223.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/223.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/228.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/228.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/228.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_16-55-13/resultados_bxb.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/103.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/103.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/103.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/103.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/107.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/107.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/107.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/107.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/109.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/109.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/109.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/109.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/113.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/113.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/113.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/113.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/121.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/121.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/121.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/121.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/123.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/123.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/123.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/123.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/212.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/212.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/212.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/212.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/214.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/214.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/214.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/214.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/215.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/215.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/215.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/215.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/217.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/217.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/217.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/217.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/219.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/219.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/219.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/219.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/220.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/220.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/220.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/220.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/222.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/222.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/222.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/222.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/234.atr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/234.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/234.hea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/234.myqrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resultados/2023-04-03_17-19-25/resultados_bxb.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tfg.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tfg.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../../.." />
+  </component>
+  <component name="ProjectId" id="2OmK6kayOzVR71UNdRfo8mPV0rO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="nuevoProyecto" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3a7a128d-a7db-4fd2-8d05-cf9d4772dc04" name="Changes" comment="" />
+      <created>1682160143353</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1682160143353</updated>
+      <workItem from="1682160144487" duration="397000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/nuevoProyecto$main.coverage" NAME="main Coverage Results" MODIFIED="1682160203279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
