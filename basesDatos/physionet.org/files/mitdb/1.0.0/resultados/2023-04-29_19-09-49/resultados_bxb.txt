@@ -1,0 +1,364 @@
+Beat-by-beat comparison results for record ./resultados/2023-04-29_19-09-49/105
+Reference annotator: atr
+     Test annotator: myqrs
+
+               Algorithm
+        n    v    f    q    o    x
+   _______________________________
+ N |    0    0    0    0 2121    0
+ V |    0    0    0    0   29    0
+ F |    0    0    0    0    0    0
+ Q |    0    0    0    0    5    0
+ O |    0    0    0    0
+ X |    0    0    0    0
+
+           QRS sensitivity:   0.00% (0/2155)
+ QRS positive predictivity:      -  (0/0)
+           VEB sensitivity:   0.00% (0/29)
+ VEB positive predictivity:      -  (0/0)
+   VEB false positive rate:      -  (0/0)
+
+
+  Beats missed in shutdown:   0.00% (0/2155)
+      N missed in shutdown:   0.00% (0/2121)
+      V missed in shutdown:   0.00% (0/29)
+      F missed in shutdown:      -  (0/0)
+       Total shutdown time:     0 seconds
+Beat-by-beat comparison results for record ./resultados/2023-04-29_19-09-49/108
+Reference annotator: atr
+     Test annotator: myqrs
+
+               Algorithm
+        n    v    f    q    o    x
+   _______________________________
+ N |    0    0    0    0 1465    0
+ V |    0    0    0    0   13    0
+ F |    0    0    0    0    2    0
+ Q |    0    0    0    0    0    0
+ O |    0    0    0    0
+ X |    0    0    0    0
+
+           QRS sensitivity:   0.00% (0/1480)
+ QRS positive predictivity:      -  (0/0)
+           VEB sensitivity:   0.00% (0/13)
+ VEB positive predictivity:      -  (0/0)
+   VEB false positive rate:      -  (0/0)
+
+
+  Beats missed in shutdown:   0.00% (0/1480)
+      N missed in shutdown:   0.00% (0/1465)
+      V missed in shutdown:   0.00% (0/13)
+      F missed in shutdown:   0.00% (0/2)
+       Total shutdown time:     0 seconds
+Beat-by-beat comparison results for record ./resultados/2023-04-29_19-09-49/109
+Reference annotator: atr
+     Test annotator: myqrs
+
+               Algorithm
+        n    v    f    q    o    x
+   _______________________________
+ N |    0    0    0    0 2067    0
+ V |    0    0    0    0   32    0
+ F |    0    0    0    0    0    0
+ Q |    0    0    0    0    0    0
+ O |    0    0    0    0
+ X |    0    0    0    0
+
+           QRS sensitivity:   0.00% (0/2099)
+ QRS positive predictivity:      -  (0/0)
+           VEB sensitivity:   0.00% (0/32)
+ VEB positive predictivity:      -  (0/0)
+   VEB false positive rate:      -  (0/0)
+
+
+  Beats missed in shutdown:   0.00% (0/2099)
+      N missed in shutdown:   0.00% (0/2067)
+      V missed in shutdown:   0.00% (0/32)
+      F missed in shutdown:      -  (0/0)
+       Total shutdown time:     0 seconds
+Beat-by-beat comparison results for record ./resultados/2023-04-29_19-09-49/115
+Reference annotator: atr
+     Test annotator: myqrs
+
+               Algorithm
+        n    v    f    q    o    x
+   _______________________________
+ N |    0    0    0    0 1637    0
+ V |    0    0    0    0    0    0
+ F |    0    0    0    0    0    0
+ Q |    0    0    0    0    0    0
+ O |    0    0    0    0
+ X |    0    0    0    0
+
+           QRS sensitivity:   0.00% (0/1637)
+ QRS positive predictivity:      -  (0/0)
+           VEB sensitivity:      -  (0/0)
+ VEB positive predictivity:      -  (0/0)
+   VEB false positive rate:      -  (0/0)
+
+
+  Beats missed in shutdown:   0.00% (0/1637)
+      N missed in shutdown:   0.00% (0/1637)
+      V missed in shutdown:      -  (0/0)
+      F missed in shutdown:      -  (0/0)
+       Total shutdown time:     0 seconds
+Beat-by-beat comparison results for record ./resultados/2023-04-29_19-09-49/117
+Reference annotator: atr
+     Test annotator: myqrs
+
+               Algorithm
+        n    v    f    q    o    x
+   _______________________________
+ N |    0    0    0    0 1284    0
+ V |    0    0    0    0    0    0
+ F |    0    0    0    0    0    0
+ Q |    0    0    0    0    0    0
+ O |    0    0    0    0
+ X |    0    0    0    0
+
+           QRS sensitivity:   0.00% (0/1284)
+ QRS positive predictivity:      -  (0/0)
+           VEB sensitivity:      -  (0/0)
+ VEB positive predictivity:      -  (0/0)
+   VEB false positive rate:      -  (0/0)
+
+
+  Beats missed in shutdown:   0.00% (0/1284)
+      N missed in shutdown:   0.00% (0/1284)
+      V missed in shutdown:      -  (0/0)
+      F missed in shutdown:      -  (0/0)
+       Total shutdown time:     0 seconds
+Beat-by-beat comparison results for record ./resultados/2023-04-29_19-09-49/123
+Reference annotator: atr
+     Test annotator: myqrs
+
+               Algorithm
+        n    v    f    q    o    x
+   _______________________________
+ N |    0    0    0    0 1266    0
+ V |    0    0    0    0    3    0
+ F |    0    0    0    0    0    0
+ Q |    0    0    0    0    0    0
+ O |    0    0    0    0
+ X |    0    0    0    0
+
+           QRS sensitivity:   0.00% (0/1269)
+ QRS positive predictivity:      -  (0/0)
+           VEB sensitivity:   0.00% (0/3)
+ VEB positive predictivity:      -  (0/0)
+   VEB false positive rate:      -  (0/0)
+
+
+  Beats missed in shutdown:   0.00% (0/1269)
+      N missed in shutdown:   0.00% (0/1266)
+      V missed in shutdown:   0.00% (0/3)
+      F missed in shutdown:      -  (0/0)
+       Total shutdown time:     0 seconds
+Beat-by-beat comparison results for record ./resultados/2023-04-29_19-09-49/124
+Reference annotator: atr
+     Test annotator: myqrs
+
+               Algorithm
+        n    v    f    q    o    x
+   _______________________________
+ N |    0    0    0    0 1315    0
+ V |    0    0    0    0   47    0
+ F |    0    0    0    0    5    0
+ Q |    0    0    0    0    0    0
+ O |    0    0    0    0
+ X |    0    0    0    0
+
+           QRS sensitivity:   0.00% (0/1367)
+ QRS positive predictivity:      -  (0/0)
+           VEB sensitivity:   0.00% (0/47)
+ VEB positive predictivity:      -  (0/0)
+   VEB false positive rate:      -  (0/0)
+
+
+  Beats missed in shutdown:   0.00% (0/1367)
+      N missed in shutdown:   0.00% (0/1315)
+      V missed in shutdown:   0.00% (0/47)
+      F missed in shutdown:   0.00% (0/5)
+       Total shutdown time:     0 seconds
+Beat-by-beat comparison results for record ./resultados/2023-04-29_19-09-49/200
+Reference annotator: atr
+     Test annotator: myqrs
+
+               Algorithm
+        n    v    f    q    o    x
+   _______________________________
+ N |    0    0    0    0 1466    0
+ V |    0    0    0    0  700    0
+ F |    0    0    0    0    2    0
+ Q |    0    0    0    0    0    0
+ O |    0    0    0    0
+ X |    0    0    0    0
+
+           QRS sensitivity:   0.00% (0/2168)
+ QRS positive predictivity:      -  (0/0)
+           VEB sensitivity:   0.00% (0/700)
+ VEB positive predictivity:      -  (0/0)
+   VEB false positive rate:      -  (0/0)
+
+
+  Beats missed in shutdown:   0.00% (0/2168)
+      N missed in shutdown:   0.00% (0/1466)
+      V missed in shutdown:   0.00% (0/700)
+      F missed in shutdown:   0.00% (0/2)
+       Total shutdown time:     0 seconds
+Beat-by-beat comparison results for record ./resultados/2023-04-29_19-09-49/202
+Reference annotator: atr
+     Test annotator: myqrs
+
+               Algorithm
+        n    v    f    q    o    x
+   _______________________________
+ N |    0    0    0    0 1855    0
+ V |    0    0    0    0   15    0
+ F |    0    0    0    0    1    0
+ Q |    0    0    0    0    0    0
+ O |    0    0    0    0
+ X |    0    0    0    0
+
+           QRS sensitivity:   0.00% (0/1871)
+ QRS positive predictivity:      -  (0/0)
+           VEB sensitivity:   0.00% (0/15)
+ VEB positive predictivity:      -  (0/0)
+   VEB false positive rate:      -  (0/0)
+
+
+  Beats missed in shutdown:   0.00% (0/1871)
+      N missed in shutdown:   0.00% (0/1855)
+      V missed in shutdown:   0.00% (0/15)
+      F missed in shutdown:   0.00% (0/1)
+       Total shutdown time:     0 seconds
+Beat-by-beat comparison results for record ./resultados/2023-04-29_19-09-49/219
+Reference annotator: atr
+     Test annotator: myqrs
+
+               Algorithm
+        n    v    f    q    o    x
+   _______________________________
+ N |    0    0    0    0 1722    0
+ V |    0    0    0    0   51    0
+ F |    0    0    0    0    0    0
+ Q |    0    0    0    0    0    0
+ O |    0    0    0    0
+ X |    0    0    0    0
+
+           QRS sensitivity:   0.00% (0/1773)
+ QRS positive predictivity:      -  (0/0)
+           VEB sensitivity:   0.00% (0/51)
+ VEB positive predictivity:      -  (0/0)
+   VEB false positive rate:      -  (0/0)
+
+
+  Beats missed in shutdown:   0.00% (0/1773)
+      N missed in shutdown:   0.00% (0/1722)
+      V missed in shutdown:   0.00% (0/51)
+      F missed in shutdown:      -  (0/0)
+       Total shutdown time:     0 seconds
+Beat-by-beat comparison results for record ./resultados/2023-04-29_19-09-49/223
+Reference annotator: atr
+     Test annotator: myqrs
+
+               Algorithm
+        n    v    f    q    o    x
+   _______________________________
+ N |    0    0    0    0 1736    0
+ V |    0    0    0    0  455    0
+ F |    0    0    0    0    8    0
+ Q |    0    0    0    0    0    0
+ O |    0    0    0    0
+ X |    0    0    0    0
+
+           QRS sensitivity:   0.00% (0/2199)
+ QRS positive predictivity:      -  (0/0)
+           VEB sensitivity:   0.00% (0/455)
+ VEB positive predictivity:      -  (0/0)
+   VEB false positive rate:      -  (0/0)
+
+
+  Beats missed in shutdown:   0.00% (0/2199)
+      N missed in shutdown:   0.00% (0/1736)
+      V missed in shutdown:   0.00% (0/455)
+      F missed in shutdown:   0.00% (0/8)
+       Total shutdown time:     0 seconds
+Beat-by-beat comparison results for record ./resultados/2023-04-29_19-09-49/232
+Reference annotator: atr
+     Test annotator: myqrs
+
+               Algorithm
+        n    v    f    q    o    x
+   _______________________________
+ N |    0    0    0    0 1485    0
+ V |    0    0    0    0    0    0
+ F |    0    0    0    0    0    0
+ Q |    0    0    0    0    0    0
+ O |    0    0    0    0
+ X |    0    0    0    0
+
+           QRS sensitivity:   0.00% (0/1485)
+ QRS positive predictivity:      -  (0/0)
+           VEB sensitivity:      -  (0/0)
+ VEB positive predictivity:      -  (0/0)
+   VEB false positive rate:      -  (0/0)
+
+
+  Beats missed in shutdown:   0.00% (0/1485)
+      N missed in shutdown:   0.00% (0/1485)
+      V missed in shutdown:      -  (0/0)
+      F missed in shutdown:      -  (0/0)
+       Total shutdown time:     0 seconds
+Beat-by-beat comparison results for record ./resultados/2023-04-29_19-09-49/233
+Reference annotator: atr
+     Test annotator: myqrs
+
+               Algorithm
+        n    v    f    q    o    x
+   _______________________________
+ N |    0    0    0    0 1863    0
+ V |    0    0    0    0  692    0
+ F |    0    0    0    0    6    0
+ Q |    0    0    0    0    0    0
+ O |    0    0    0    0
+ X |    0    0    0    0
+
+           QRS sensitivity:   0.00% (0/2561)
+ QRS positive predictivity:      -  (0/0)
+           VEB sensitivity:   0.00% (0/692)
+ VEB positive predictivity:      -  (0/0)
+   VEB false positive rate:      -  (0/0)
+
+
+  Beats missed in shutdown:   0.00% (0/2561)
+      N missed in shutdown:   0.00% (0/1863)
+      V missed in shutdown:   0.00% (0/692)
+      F missed in shutdown:   0.00% (0/6)
+       Total shutdown time:     0 seconds
+Beat-by-beat comparison results for record ./resultados/2023-04-29_19-09-49/234
+Reference annotator: atr
+     Test annotator: myqrs
+
+               Algorithm
+        n    v    f    q    o    x
+   _______________________________
+ N |    0    0    0    0 2288    0
+ V |    0    0    0    0    3    0
+ F |    0    0    0    0    0    0
+ Q |    0    0    0    0    0    0
+ O |    0    0    0    0
+ X |    0    0    0    0
+
+           QRS sensitivity:   0.00% (0/2291)
+ QRS positive predictivity:      -  (0/0)
+           VEB sensitivity:   0.00% (0/3)
+ VEB positive predictivity:      -  (0/0)
+   VEB false positive rate:      -  (0/0)
+
+
+  Beats missed in shutdown:   0.00% (0/2291)
+      N missed in shutdown:   0.00% (0/2288)
+      V missed in shutdown:   0.00% (0/3)
+      F missed in shutdown:      -  (0/0)
+       Total shutdown time:     0 seconds

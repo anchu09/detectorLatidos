@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Feb 19 18:03:19 2023
+
+@author: dani
+"""
+
+import numpy as np
+from tensorflow import keras
+from tensorflow.keras.utils import Sequence
+
