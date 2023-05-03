@@ -194,18 +194,19 @@ x = Conv1D(512, kernel_size=3, strides=1, padding="same", activation="relu")(x)
 # x = Conv1D(512, kernel_size=3, strides=1, padding="same", activation="relu")(x)
 x = MaxPooling1D(pool_size=2)(x)
 # Capa del transformer
+
+# sine_encoder = SinePositionEncoding(max_wavelength=5000)
+# sine_encoding = sine_encoder(x)
+# encoded=x+sine_encoding
 #encoder
-x = SinePositionEncoding(max_wavelength=5000)(x)
-encoder_output=TransformerEncoder(num_heads=64, intermediate_dim=128, dropout=0.3)(x)
+encoder_output=TransformerEncoder(num_heads=64, intermediate_dim=128, dropout=0.3)(encoded)
 # Decoder layers
 # decoder_input = SinePositionEncoding(max_wavelength=5000)(encoder_output)
-decoder_output = TransformerDecoder( num_heads=64, intermediate_dim=128, dropout=0.3)(encoder_output)
-
-
+# decoder_output = TransformerDecoder( num_heads=64, intermediate_dim=128, dropout=0.3)(encoder_output)
 
 #classifier layers
 # classif=UpSampling1D(8)(decoder_output)
-classif = Conv1DTranspose(256, kernel_size=3, strides=8, padding="same", activation="relu")(decoder_output)
+classif = Conv1DTranspose(256, kernel_size=3, strides=8, padding="same", activation="relu")(encoder_output)
 classif = Dense(256, activation="relu")(classif)
 classif = Dropout(0.3)(classif)
 classif = Dense(128, activation="relu")(classif)
@@ -215,7 +216,7 @@ model = tf.keras.Model(inputs=inputs, outputs=classif)
 
 model.compile(optimizer="adam", loss="categorical_crossentropy")
 
-model.fit_generator(train_data_generator, epochs=50)
+model.fit_generator(train_data_generator, epochs=10)
 
 test_predictions = model.predict(test_data_generator)
 
