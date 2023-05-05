@@ -195,20 +195,23 @@ x = Conv1D(512, kernel_size=3, strides=1, padding="same", activation="relu")(x)
 x = MaxPooling1D(pool_size=2)(x)
 # Capa del transformer
 
-# sine_encoder = SinePositionEncoding(max_wavelength=5000)
-# sine_encoding = sine_encoder(x)
-# encoded=x+sine_encoding
-#encoder
-encoder_output=TransformerEncoder(num_heads=64, intermediate_dim=128, dropout=0.3)(encoded)
+sine_encoder = SinePositionEncoding(max_wavelength=5000)
+sine_encoding = sine_encoder(x)
+encoded=x+sine_encoding
+encoder_output=TransformerEncoder(num_heads=2, intermediate_dim=4, dropout=0.3)(encoded)
+# encoder_output=TransformerEncoder(num_heads=4, intermediate_dim=8, dropout=0.3)(encoder_output)
+
+
+
 # Decoder layers
 # decoder_input = SinePositionEncoding(max_wavelength=5000)(encoder_output)
 # decoder_output = TransformerDecoder( num_heads=64, intermediate_dim=128, dropout=0.3)(encoder_output)
 
 #classifier layers
-# classif=UpSampling1D(8)(decoder_output)
-classif = Conv1DTranspose(256, kernel_size=3, strides=8, padding="same", activation="relu")(encoder_output)
-classif = Dense(256, activation="relu")(classif)
-classif = Dropout(0.3)(classif)
+# classif=UpSampling1D(8)(encoder_output)
+classif = Conv1DTranspose(512, kernel_size=128, strides=8, padding="same", activation="relu")(encoder_output)
+# classif = Dense(256, activation="relu")(classif)
+# classif = Dropout(0.3)(classif)
 classif = Dense(128, activation="relu")(classif)
 classif = Dropout(0.3)(classif)
 classif = Dense(6, activation="softmax")(classif)
@@ -216,14 +219,17 @@ model = tf.keras.Model(inputs=inputs, outputs=classif)
 
 model.compile(optimizer="adam", loss="categorical_crossentropy")
 
-model.fit_generator(train_data_generator, epochs=10)
+# model.fit_generator(train_data_generator, epochs=20)
+
+#overfitear con todo eltest
+model.fit_generator(test_data_generator, epochs=100)
 
 test_predictions = model.predict(test_data_generator)
 
-# # aquí mooving average NO AYUDA ASI QUE DE MOMENTO NO LA USO
-# window=5
+# # # aquí mooving average NO AYUDA ASI QUE DE MOMENTO NO LA USO
+# window=15
 # test_predictions = np.apply_along_axis(lambda x: np.convolve(x, np.ones(window), mode='same') / window, axis=0, arr=test_predictions)
-
+#
 
 print("ENTRENADO")
 max_index = tf.argmax(test_predictions, axis=-1)
@@ -233,31 +239,29 @@ one_hot_output = one_hot_output.numpy()
 
 #
 # plotear las salidas de la red neuronal con el ecg
-for i in np.arange(len(lista_paths_test_x)):
-
+# for i in np.arange(len(lista_paths_test_x)):
+for i in np.arange(130,160):
 
     ecg_actual=np.asarray(np.loadtxt(lista_paths_test_x[i])).astype(np.float32)
 
     plt.plot(ecg_actual[:,0]+1)
     plt.title(str(i)+": "+lista_paths_test_x[i][29:-4])
     etiquetasactuales= np.asarray(np.loadtxt(lista_paths_test_y[i], delimiter=',')).astype(np.float32)
-    # for k in np.arange(6):
+    # for k in np.arange(5):
     #
     #     plt.plot(np.arange(len(one_hot_output[i])),one_hot_output[i][:,k],label=str(k))
-    #     plt.plot(etiquetasactuales[:,k], label="et: "+str(k),linestyle="dotted")
+    #     plt.plot(etiquetasactuales[:,k]-0.05, label="et: "+str(k))
     #
-    #     # plt.xlim(0,500)
-    #     plt.ylim(-0,1.3)
+    #     plt.xlim(0,1500)
+    #     # plt.ylim(-0,1.3)
 
-
-
-    plt.plot(np.arange(len(one_hot_output[i])),one_hot_output[i][:,1],label=str(1),color="red")
-    plt.plot(etiquetasactuales[:,1]-0.05, label="et: "+str(1),color="green")
+    plt.plot(np.arange(len(one_hot_output[i])),one_hot_output[i][:,1],label=str(1))
+    plt.plot(etiquetasactuales[:,1]-0.05, label="et: "+str(1))
 
     plt.plot(np.arange(len(one_hot_output[i])),one_hot_output[i][:,5]-0.2,label=str(5),color="orange")
     plt.plot(etiquetasactuales[:,5]-0.25, label="et: "+str(5),color="blue")
     # plt.xlim(0,500)
-    plt.ylim(-0,1.3)
+    # plt.ylim(-0,1.3)
 
     plt.legend()
     plt.show()
