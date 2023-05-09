@@ -126,15 +126,6 @@ lista_paths_test_x=sorted(lista_paths_test_x)
 lista_paths_train_y=sorted(lista_paths_train_y)
 lista_paths_train_x=sorted(lista_paths_train_x)
 
-#si quiero overfittear con el archivo 102 por ejemplo
-# if lista_paths_train_x[0] == './senales_troceadas/ecgs/102/102_part001.csv':
-#     lista_paths_train_x=lista_paths_test_x=lista_paths_train_x
-#     lista_paths_train_y=lista_paths_test_y=lista_paths_train_y
-# elif lista_paths_test_x[0] == './senales_troceadas/ecgs/102/102_part001.csv':
-#     lista_paths_train_x=lista_paths_test_x=lista_paths_test_x
-#     lista_paths_train_y=lista_paths_test_y=lista_paths_test_y
-#
-
 print(lista_paths_train_x)
 print(lista_paths_train_y)
 print(lista_paths_test_x)
@@ -174,7 +165,10 @@ test_data_generator = CustomDataGenerator(lista_paths_test_x, lista_paths_test_y
 # ])
 
 
-# Transformer
+
+
+
+
 input_shape = (5000, 2)
 # Capas convolucionales de extracción de características
 inputs = Input(shape=input_shape)
@@ -182,49 +176,69 @@ x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="relu")(inpu
 x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="relu")(x)
 x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="relu")(x)
 # x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+
+x=LayerNormalization(-2)(x)
 x = MaxPooling1D(pool_size=2)(x)
 x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="relu")(x)
 x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="relu")(x)
 x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="relu")(x)
 # x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+
+x=LayerNormalization(-2)(x)
 x = MaxPooling1D(pool_size=2)(x)
 x = Conv1D(512, kernel_size=3, strides=1, padding="same", activation="relu")(x)
 x = Conv1D(512, kernel_size=3, strides=1, padding="same", activation="relu")(x)
 x = Conv1D(512, kernel_size=3, strides=1, padding="same", activation="relu")(x)
 # x = Conv1D(512, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+
+x=LayerNormalization(-2)(x)
 x = MaxPooling1D(pool_size=2)(x)
 # Capa del transformer
 
-sine_encoder = SinePositionEncoding(max_wavelength=5000)
-sine_encoding = sine_encoder(x)
-encoded=x+sine_encoding
-encoder_output=TransformerEncoder(num_heads=2, intermediate_dim=4, dropout=0.3)(encoded)
-# encoder_output=TransformerEncoder(num_heads=4, intermediate_dim=8, dropout=0.3)(encoder_output)
+# sine_encoder = SinePositionEncoding(max_wavelength=x.shape[1])
+# sine_encoding = sine_encoder(x)
+# encoded=x+sine_encoding
+# encoded=LayerNormalization(-1)(encoded)
+# encoder_output=TransformerEncoder(num_heads=2, intermediate_dim=2, dropout=0.3)(encoded)
+#
 
 
 
-# Decoder layers
-# decoder_input = SinePositionEncoding(max_wavelength=5000)(encoder_output)
-# decoder_output = TransformerDecoder( num_heads=64, intermediate_dim=128, dropout=0.3)(encoder_output)
-
-#classifier layers
-# classif=UpSampling1D(8)(encoder_output)
-classif = Conv1DTranspose(512, kernel_size=128, strides=8, padding="same", activation="relu")(encoder_output)
+classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="relu")(x)
+classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="relu")(classif)
+classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="relu")(classif)
 # classif = Dense(256, activation="relu")(classif)
 # classif = Dropout(0.3)(classif)
+
+classif=LayerNormalization(-2)(classif)
 classif = Dense(128, activation="relu")(classif)
 classif = Dropout(0.3)(classif)
+
+
+classif=LayerNormalization(-2)(classif)
 classif = Dense(6, activation="softmax")(classif)
 model = tf.keras.Model(inputs=inputs, outputs=classif)
 
 model.compile(optimizer="adam", loss="categorical_crossentropy")
 
-# model.fit_generator(train_data_generator, epochs=20)
-
+model.fit_generator(train_data_generator, epochs=200)
 #overfitear con todo eltest
-model.fit_generator(test_data_generator, epochs=100)
+# model.fit_generator(test_data_generator, epochs=20)
 
 test_predictions = model.predict(test_data_generator)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # # # aquí mooving average NO AYUDA ASI QUE DE MOMENTO NO LA USO
 # window=15
@@ -240,7 +254,7 @@ one_hot_output = one_hot_output.numpy()
 #
 # plotear las salidas de la red neuronal con el ecg
 # for i in np.arange(len(lista_paths_test_x)):
-for i in np.arange(130,160):
+for i in np.arange(130):
 
     ecg_actual=np.asarray(np.loadtxt(lista_paths_test_x[i])).astype(np.float32)
 

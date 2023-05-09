@@ -65,3 +65,52 @@ def transformer1(train_data_generator, test_data_generator, epochs):
     test_predictions = model.predict(test_data_generator)
 
     return test_predictions
+
+#va bien para losnonrmales
+input_shape = (5000, 2)
+# Capas convolucionales de extracción de características
+inputs = Input(shape=input_shape)
+x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="relu")(inputs)
+x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+# x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+x = MaxPooling1D(pool_size=2)(x)
+x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+# x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+x = MaxPooling1D(pool_size=2)(x)
+x = Conv1D(512, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+x = Conv1D(512, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+x = Conv1D(512, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+# x = Conv1D(512, kernel_size=3, strides=1, padding="same", activation="relu")(x)
+x = MaxPooling1D(pool_size=2)(x)
+# Capa del transformer
+
+sine_encoder = SinePositionEncoding(max_wavelength=x.shape[1])
+sine_encoding = sine_encoder(x)
+encoded=x+sine_encoding
+encoder_output=TransformerEncoder(num_heads=2, intermediate_dim=4, dropout=0.3)(encoded)
+
+classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="relu")(encoder_output)
+classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="relu")(classif)
+classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="relu")(classif)
+# classif = Dense(256, activation="relu")(classif)
+# classif = Dropout(0.3)(classif)
+classif = Dense(128, activation="relu")(classif)
+classif = Dropout(0.3)(classif)
+classif = Dense(6, activation="softmax")(classif)
+model = tf.keras.Model(inputs=inputs, outputs=classif)
+
+model.compile(optimizer="adam", loss="categorical_crossentropy")
+
+# model.fit_generator(train_data_generator, epochs=20)
+#overfitear con todo eltest
+model.fit_generator(test_data_generator, epochs=20)
+
+test_predictions = model.predict(test_data_generator)
+
+# # # aquí mooving average NO AYUDA ASI QUE DE MOMENTO NO LA USO
+# window=15
+# test_predictions = np.apply_along_axis(lambda x: np.convolve(x, np.ones(window), mode='same') / window, axis=0, arr=test_predictions)
+#
