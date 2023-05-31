@@ -1,0 +1,17 @@
+Defaulting to user installation because normal site-packages is not writeable
+Collecting receptivefield
+  Downloading receptivefield-0.5.0-py3-none-any.whl (363 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 363.4/363.4 kB 3.6 MB/s eta 0:00:00
+Requirement already satisfied: numpy>=1.17.* in /home/dani/.local/lib/python3.10/site-packages (from receptivefield) (1.23.5)
+Requirement already satisfied: matplotlib>=3.1.* in /usr/local/lib/python3.10/dist-packages (from receptivefield) (3.7.1)
+Requirement already satisfied: pillow>=6.2.* in /usr/lib/python3/dist-packages (from receptivefield) (9.0.1)
+Requirement already satisfied: packaging>=20.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib>=3.1.*->receptivefield) (23.0)
+Requirement already satisfied: pyparsing>=2.3.1 in /usr/lib/python3/dist-packages (from matplotlib>=3.1.*->receptivefield) (2.4.7)
+Requirement already satisfied: cycler>=0.10 in /usr/local/lib/python3.10/dist-packages (from matplotlib>=3.1.*->receptivefield) (0.11.0)
+Requirement already satisfied: fonttools>=4.22.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib>=3.1.*->receptivefield) (4.39.3)
+Requirement already satisfied: contourpy>=1.0.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib>=3.1.*->receptivefield) (1.0.7)
+Requirement already satisfied: kiwisolver>=1.0.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib>=3.1.*->receptivefield) (1.4.4)
+Requirement already satisfied: python-dateutil>=2.7 in /usr/local/lib/python3.10/dist-packages (from matplotlib>=3.1.*->receptivefield) (2.8.2)
+Requirement already satisfied: six>=1.5 in /usr/lib/python3/dist-packages (from python-dateutil>=2.7->matplotlib>=3.1.*->receptivefield) (1.16.0)
+Installing collected packages: receptivefield
+Successfully installed receptivefield-0.5.0
