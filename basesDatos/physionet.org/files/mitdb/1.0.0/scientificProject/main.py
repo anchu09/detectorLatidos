@@ -168,8 +168,18 @@ class CustomDataGenerator(Sequence):
 
         batch_y = np.asarray([np.loadtxt(filename,delimiter=',') for filename in batch_y_filenames]).astype(np.int32)
 
-        random_number=np.np.random.randint(0, 6)#devuelve hasta el 5
+        # random_number=np.random.randint(0,1)#devuelve hasta el 5
+        random_number=3
+
+        # print(random_number)
+        plt.plot(batch_x[0,:,0],label="primero sin filt")
+        plt.plot(batch_x[0,:,1],label="segundo sin filt")
         batch_x, batch_y=randomTransformations.randomTransformation(random_number,batch_x,batch_y)
+        plt.plot(batch_x[0,:,0],label="primero filtrado")
+        plt.plot(batch_x[0,:,1],label="seugndo siltrado")
+        plt.legend()
+        plt.show()
+
         return batch_x, batch_y
 
 # lista_paths_train_x = lista_paths_train_x[:260]
