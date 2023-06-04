@@ -169,16 +169,18 @@ class CustomDataGenerator(Sequence):
         batch_y = np.asarray([np.loadtxt(filename,delimiter=',') for filename in batch_y_filenames]).astype(np.int32)
 
         # random_number=np.random.randint(0,1)#devuelve hasta el 5
-        random_number=3
+        random_number=4
 
         # print(random_number)
-        plt.plot(batch_x[0,:,0],label="primero sin filt")
-        plt.plot(batch_x[0,:,1],label="segundo sin filt")
+        plt.plot(batch_x[0,:,0]+1,label="primero sin filt")
+        plt.plot(batch_x[0,:,1]+1,label="segundo sin filt")
         batch_x, batch_y=randomTransformations.randomTransformation(random_number,batch_x,batch_y)
         plt.plot(batch_x[0,:,0],label="primero filtrado")
         plt.plot(batch_x[0,:,1],label="seugndo siltrado")
+        # plt.xlim(0,2000)
         plt.legend()
         plt.show()
+        plt.figure()
 
         return batch_x, batch_y
 
@@ -203,37 +205,38 @@ test = CustomDataGenerator(lista_paths_test_x, lista_paths_test_y, batch_size=1)
 
 input_shape = (5000, 2)
 # Capas convolucionales de extracción de características
-def model_build_func(input_shape):
+def model_build_func(input_shape,kernel_conv=7,strides_conv=1,dilation_rate=2):
+    #antes tenia kernel 3 y strides 1
     inputs = Input(shape=input_shape,name='input_lay')
-    x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(inputs)
-    x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x = Conv1D(64, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(inputs)
+    x = Conv1D(64, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
     x=LayerNormalization(-2)(x)
     x = BatchNormalization()(x)
     x = Dropout(0.3)(x)
-    x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
-    x = Conv1D(64, kernel_size=3, strides=1, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
-    x=LayerNormalization(-2)(x)
-    x = BatchNormalization()(x)
-    x = Dropout(0.3)(x)
-    x = MaxPooling1D(pool_size=2)(x)
-    x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
-    x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
-    x=LayerNormalization(-2)(x)
-    x = BatchNormalization()(x)
-    x = Dropout(0.3)(x)
-    x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
-    x = Conv1D(128, kernel_size=3, strides=1, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x = Conv1D(64, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x = Conv1D(64, kernel_size=kernel_conv, strides=strides_conv,dilation_rate=dilation_rate, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
     x=LayerNormalization(-2)(x)
     x = BatchNormalization()(x)
     x = Dropout(0.3)(x)
     x = MaxPooling1D(pool_size=2)(x)
-    x = Conv1D(512, kernel_size=3, strides=1, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
-    x = Conv1D(512, kernel_size=3, strides=1, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x = Conv1D(128, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x = Conv1D(128, kernel_size=kernel_conv, strides=strides_conv, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
     x=LayerNormalization(-2)(x)
     x = BatchNormalization()(x)
     x = Dropout(0.3)(x)
-    x = Conv1D(512, kernel_size=3, strides=1, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
-    x = Conv1D(512, kernel_size=3, strides=1, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001), name='last_conv')(x)
+    x = Conv1D(128, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x = Conv1D(128, kernel_size=kernel_conv, strides=strides_conv,dilation_rate=dilation_rate, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x=LayerNormalization(-2)(x)
+    x = BatchNormalization()(x)
+    x = Dropout(0.3)(x)
+    x = MaxPooling1D(pool_size=2)(x)
+    x = Conv1D(512, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x = Conv1D(512, kernel_size=kernel_conv, strides=strides_conv,dilation_rate=dilation_rate, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x=LayerNormalization(-2)(x)
+    x = BatchNormalization()(x)
+    x = Dropout(0.3)(x)
+    x = Conv1D(512, kernel_size=kernel_conv, strides=strides_conv,dilation_rate=dilation_rate, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x = Conv1D(512, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001), name='last_conv')(x)
     x=LayerNormalization(-2)(x)
     x = BatchNormalization()(x)
     x = Dropout(0.3)(x)
@@ -311,7 +314,7 @@ datasettest = datasettest.batch(1)  # si len(train) es demasiado grande, reducir
 
 
 
-history =model.fit_generator(datasettrain, epochs=2,validation_data=datasettest)
+history =model.fit_generator(datasettrain, epochs=400,validation_data=datasettest)
 train_loss = history.history['loss']
 test_loss = history.history['val_loss']
 #
@@ -336,47 +339,41 @@ one_hot_output = one_hot_output.numpy()
 
 
 # plotear las salidas de la red neuronal con el ecg
+#
+# for i in np.arange(len(lista_paths_test_x)):
+#
+#
+#
+#
+#     ecg_actual=np.asarray(np.loadtxt(lista_paths_test_x[i])).astype(np.float32)
+#     decoder_string="F = 0\nN = 1\nQ = 2\nS = 3\nV = 4\nZ = 5"
+#     plt.plot(ecg_actual[:,0]+1,label=decoder_string)
+#     plt.title(str(i)+": "+lista_paths_test_x[i][29:-4])
+#     etiquetasactuales= np.asarray(np.loadtxt(lista_paths_test_y[i], delimiter=',')).astype(np.float32)
+#     for k in np.arange(5):
+#
+#
+#
+#         plt.plot(np.arange(len(one_hot_output[i])),one_hot_output[i][:,k],label="PRED: "+str(k))
+#         plt.plot(etiquetasactuales[:,k]-0.05-(k/100), label="ORIG: "+str(k))
+#
+#     plt.plot(np.arange(len(one_hot_output[i])),one_hot_output[i][:,5]-0.4,label="PRED: "+str(5),color="brown")
+#     plt.plot(etiquetasactuales[:,5]-0.45, label="ORIG: "+str(5),color="black")
+#
+#
+#     plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+#     plt.subplots_adjust(right=0.75)
+#
+#     os.makedirs("plots", exist_ok=True)
+#
+#     # Guardar la figura en la carpeta con un nombre único
+#     # plt.savefig("plots/" +str(i)+": "+lista_paths_test_x[i][29:-4]+ ".png")
+#     #
+#     plt.show()
+#     plt.figure()
+#
 
-for i in np.arange(len(lista_paths_test_x)):
 
-
-
-
-    ecg_actual=np.asarray(np.loadtxt(lista_paths_test_x[i])).astype(np.float32)
-    decoder_string="F = 0\nN = 1\nQ = 2\nS = 3\nV = 4\nZ = 5"
-    plt.plot(ecg_actual[:,0]+1,label=decoder_string)
-    plt.title(str(i)+": "+lista_paths_test_x[i][29:-4])
-    etiquetasactuales= np.asarray(np.loadtxt(lista_paths_test_y[i], delimiter=',')).astype(np.float32)
-    for k in np.arange(5):
-
-
-
-        plt.plot(np.arange(len(one_hot_output[i])),one_hot_output[i][:,k],label="PRED: "+str(k))
-        plt.plot(etiquetasactuales[:,k]-0.05-(k/100), label="ORIG: "+str(k))
-
-    plt.plot(np.arange(len(one_hot_output[i])),one_hot_output[i][:,5]-0.4,label="PRED: "+str(5),color="brown")
-    plt.plot(etiquetasactuales[:,5]-0.45, label="ORIG: "+str(5),color="black")
-
-
-    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-    plt.subplots_adjust(right=0.75)
-
-    os.makedirs("plots", exist_ok=True)
-
-    # Guardar la figura en la carpeta con un nombre único
-    # plt.savefig("plots/" +str(i)+": "+lista_paths_test_x[i][29:-4]+ ".png")
-    #
-    plt.show()
-    plt.figure()
-
-
-plt.figure()
-print(train_loss)
-print(test_loss)
-plt.plot(train_loss,label="train_loss")
-plt.plot(test_loss,label="test_loss")
-plt.legend()
-plt.savefig("plots/loss.png")
 
 
 decoded_labels = []
@@ -471,6 +468,11 @@ for fichero_hea in sorted(lista_archivos_resultado):
     ruta_copia = os.path.join(ruta_carpeta, fichero_hea+".hea")
     shutil.copy(ruta_archivo, ruta_copia)
 
+for fichero_qrs in sorted(lista_archivos_resultado):
+    ruta_archivo = os.path.join(ruta_directorio, fichero_qrs+".qrs")
+    ruta_copia = os.path.join(ruta_carpeta, fichero_qrs+".qrs")
+    shutil.copy(ruta_archivo, ruta_copia)
+
 
 carpeta_actual2 = os.path.join("./MyqrsLeible/", fecha_actual)
 os.makedirs(carpeta_actual2, exist_ok=True)
@@ -479,8 +481,17 @@ for nombrefichero in sorted(lista_archivos_resultado):
     os.system("cat ./resultados/"+fecha_actual+"/"+nombrefichero+".csv | wrann -r ./resultados/"+fecha_actual+"/"+nombrefichero+" -a myqrs")
 
     os.system("rdann -r ./resultados/"+fecha_actual+"/"+nombrefichero+" -a myqrs>./MyqrsLeible/"+fecha_actual+"/"+nombrefichero+".csv")
-
+    os.system("echo MY_ANNOTATIONS: >> ./resultados/"+fecha_actual+"/resultados_bxb.txt")
     os.system("bxb -r ./resultados/"+fecha_actual+"/"+nombrefichero+" -a atr myqrs >> ./resultados/"+fecha_actual+"/resultados_bxb.txt")
+    os.system("echo GQRS_ANNOTATIONS >> ./resultados/"+fecha_actual+"/resultados_bxb.txt")
+    os.system("bxb -r ./resultados/"+fecha_actual+"/"+nombrefichero+" -a atr qrs >> ./resultados/"+fecha_actual+"/resultados_bxb.txt")
+    os.system("echo ---------------------------------------------------------------------------------------------------------------- >> ./resultados/"+fecha_actual+"/resultados_bxb.txt")
 
-
+plt.figure()
+print(train_loss)
+print(test_loss)
+plt.plot(train_loss,label="train_loss")
+plt.plot(test_loss,label="test_loss")
+plt.legend()
+plt.savefig("./resultados/"+fecha_actual+"/loss.png")
 print("acabbaod")
