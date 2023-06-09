@@ -148,10 +148,11 @@ lista_paths_train_x=sorted(lista_paths_train_x)
 # print(lista_paths_test_y)
 
 class CustomDataGenerator(Sequence):
-    def __init__(self, x_filenames, y_filenames, batch_size):
+    def __init__(self, x_filenames, y_filenames, batch_size, train):
         self.x_filenames = x_filenames
         self.y_filenames = y_filenames
         self.batch_size = batch_size
+        self.train = train
 
     def __len__(self):
         return int(np.ceil(len(self.x_filenames) / float(self.batch_size)))
@@ -167,20 +168,20 @@ class CustomDataGenerator(Sequence):
         #batch_x=transformacion(batch_x)
 
         batch_y = np.asarray([np.loadtxt(filename,delimiter=',') for filename in batch_y_filenames]).astype(np.int32)
+        if self.train==True:
+            random_number=np.random.randint(0,7)#devuelve hasta el 5
+            # random_number=4
 
-        # random_number=np.random.randint(0,1)#devuelve hasta el 5
-        random_number=4
-
-        # print(random_number)
-        plt.plot(batch_x[0,:,0]+1,label="primero sin filt")
-        plt.plot(batch_x[0,:,1]+1,label="segundo sin filt")
-        batch_x, batch_y=randomTransformations.randomTransformation(random_number,batch_x,batch_y)
-        plt.plot(batch_x[0,:,0],label="primero filtrado")
-        plt.plot(batch_x[0,:,1],label="seugndo siltrado")
-        # plt.xlim(0,2000)
-        plt.legend()
-        plt.show()
-        plt.figure()
+            # print(random_number)
+            # plt.plot(batch_x[0,:,0]+1,label="primero sin filt")
+            # plt.plot(batch_x[0,:,1]+1,label="segundo sin filt")
+            batch_x, batch_y=randomTransformations.randomTransformation(random_number,batch_x,batch_y,titulo=True)
+            # plt.plot(batch_x[0,:,0],label="primero filtrado")
+            # plt.plot(batch_x[0,:,1],label="seugndo siltrado")
+            # plt.xlim(0,2000)
+            # plt.legend()
+            # plt.show()
+            # plt.figure()
 
         return batch_x, batch_y
 
@@ -189,8 +190,8 @@ class CustomDataGenerator(Sequence):
 # lista_paths_test_x = lista_paths_test_x[:260]
 # lista_paths_test_y = lista_paths_test_y[:260]
 
-train = CustomDataGenerator(lista_paths_train_x, lista_paths_train_y, batch_size=1)
-test = CustomDataGenerator(lista_paths_test_x, lista_paths_test_y, batch_size=1)
+train = CustomDataGenerator(lista_paths_train_x, lista_paths_train_y, batch_size=1,train=True)
+test = CustomDataGenerator(lista_paths_test_x, lista_paths_test_y, batch_size=1,train=False)
 ##red neuronal cutre
 # model = keras.models.Sequential([
 #     keras.layers.Dense(128, activation="relu"),
@@ -205,7 +206,7 @@ test = CustomDataGenerator(lista_paths_test_x, lista_paths_test_y, batch_size=1)
 
 input_shape = (5000, 2)
 # Capas convolucionales de extracción de características
-def model_build_func(input_shape,kernel_conv=7,strides_conv=1,dilation_rate=2):
+def model_build_func(input_shape,kernel_conv=3,strides_conv=1,dilation_rate=1):
     #antes tenia kernel 3 y strides 1
     inputs = Input(shape=input_shape,name='input_lay')
     x = Conv1D(64, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(inputs)
@@ -220,7 +221,7 @@ def model_build_func(input_shape,kernel_conv=7,strides_conv=1,dilation_rate=2):
     x = Dropout(0.3)(x)
     x = MaxPooling1D(pool_size=2)(x)
     x = Conv1D(128, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
-    x = Conv1D(128, kernel_size=kernel_conv, strides=strides_conv, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x = Conv1D(128, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
     x=LayerNormalization(-2)(x)
     x = BatchNormalization()(x)
     x = Dropout(0.3)(x)
