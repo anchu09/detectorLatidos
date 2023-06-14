@@ -147,6 +147,9 @@ lista_paths_train_x=sorted(lista_paths_train_x)
 # print(lista_paths_test_x)
 # print(lista_paths_test_y)
 
+
+
+
 class CustomDataGenerator(Sequence):
     def __init__(self, x_filenames, y_filenames, batch_size, train):
         self.x_filenames = x_filenames
@@ -170,15 +173,15 @@ class CustomDataGenerator(Sequence):
         batch_y = np.asarray([np.loadtxt(filename,delimiter=',') for filename in batch_y_filenames]).astype(np.int32)
         if self.train==True:
             random_number=np.random.randint(0,7)#devuelve hasta el 5
-            # random_number=4
+            # random_number=0
 
             # print(random_number)
-            # plt.plot(batch_x[0,:,0]+1,label="primero sin filt")
+            # plt.plot(batch_x[0,:,0]+2,label="primero sin filt")
             # plt.plot(batch_x[0,:,1]+1,label="segundo sin filt")
             batch_x, batch_y=randomTransformations.randomTransformation(random_number,batch_x,batch_y,titulo=True)
             # plt.plot(batch_x[0,:,0],label="primero filtrado")
             # plt.plot(batch_x[0,:,1],label="seugndo siltrado")
-            # plt.xlim(0,2000)
+            # plt.xlim(0,500)
             # plt.legend()
             # plt.show()
             # plt.figure()
@@ -206,7 +209,7 @@ test = CustomDataGenerator(lista_paths_test_x, lista_paths_test_y, batch_size=1,
 
 input_shape = (5000, 2)
 # Capas convolucionales de extracción de características
-def model_build_func(input_shape,kernel_conv=3,strides_conv=1,dilation_rate=1):
+def model_build_func(input_shape,kernel_conv=7,strides_conv=1,dilation_rate=2):
     #antes tenia kernel 3 y strides 1
     inputs = Input(shape=input_shape,name='input_lay')
     x = Conv1D(64, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(inputs)
@@ -253,10 +256,10 @@ def model_build_func(input_shape,kernel_conv=3,strides_conv=1,dilation_rate=1):
     # decoder_input = encoder_output
     # decoder_output = keras_nlp.layers.TransformerDecoder( num_heads=128, intermediate_dim=128, dropout=0.3)(decoder_input)
 
-    classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
-    classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(classif)
-    classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(classif)
-
+    # classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    # classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(classif)
+    # classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(classif)
+    classif=UpSampling1D(8)(x)
 
     classif = Dense(256, activation="elu")(classif)
     classif=LayerNormalization(-2)(classif)
@@ -315,7 +318,7 @@ datasettest = datasettest.batch(1)  # si len(train) es demasiado grande, reducir
 
 
 
-history =model.fit_generator(datasettrain, epochs=400,validation_data=datasettest)
+history =model.fit_generator(datasettrain, epochs=300,validation_data=datasettest)
 train_loss = history.history['loss']
 test_loss = history.history['val_loss']
 #
