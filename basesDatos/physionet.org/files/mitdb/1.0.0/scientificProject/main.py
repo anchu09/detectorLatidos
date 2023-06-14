@@ -256,10 +256,10 @@ def model_build_func(input_shape,kernel_conv=7,strides_conv=1,dilation_rate=2):
     # decoder_input = encoder_output
     # decoder_output = keras_nlp.layers.TransformerDecoder( num_heads=128, intermediate_dim=128, dropout=0.3)(decoder_input)
 
-    # classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
-    # classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(classif)
-    # classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(classif)
-    classif=UpSampling1D(8)(x)
+    classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(classif)
+    classif = Conv1DTranspose(256, kernel_size=8, strides=2, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(classif)
+    # classif=UpSampling1D(8)(x)
 
     classif = Dense(256, activation="elu")(classif)
     classif=LayerNormalization(-2)(classif)
