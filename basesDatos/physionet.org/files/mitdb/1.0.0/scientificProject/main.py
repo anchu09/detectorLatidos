@@ -111,6 +111,14 @@ factor= int(len(numeros_posibles)*0.3) #proporcion train/test
 
 
 x_train, x_test = train_test_split(numeros_posibles,test_size=factor,stratify= label_per_file)
+#
+# x_train=['100','102','104','105','106','109','111','113','114','116','117','118','119','121','122','124','200','203','205','207','208','209','210','212','213','214','217','219','220','221','228','232','233','234']
+# x_test=['101','103','107','108','112','115','123','201','202','215','222','223','230','231']
+# print(len(x_test)+len(x_train))
+# print(len(numeros_posibles))
+# for datos in x_train:
+#     if datos in x_test:
+#         print(datos)
 x_train=sorted(x_train)
 x_test=sorted(x_test)
 
@@ -213,33 +221,52 @@ def model_build_func(input_shape,kernel_conv=7,strides_conv=1,dilation_rate=2):
     #antes tenia kernel 3 y strides 1
     inputs = Input(shape=input_shape,name='input_lay')
     x = Conv1D(64, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(inputs)
+    x=LayerNormalization(-2)(x)
+    x = BatchNormalization()(x)
+    x = Dropout(0.3)(x)
     x = Conv1D(64, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
     x=LayerNormalization(-2)(x)
     x = BatchNormalization()(x)
     x = Dropout(0.3)(x)
     x = Conv1D(64, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x=LayerNormalization(-2)(x)
+    x = BatchNormalization()(x)
+    x = Dropout(0.3)(x)
     x = Conv1D(64, kernel_size=kernel_conv, strides=strides_conv,dilation_rate=dilation_rate, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
     x=LayerNormalization(-2)(x)
     x = BatchNormalization()(x)
     x = Dropout(0.3)(x)
     x = MaxPooling1D(pool_size=2)(x)
     x = Conv1D(128, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x=LayerNormalization(-2)(x)
+    x = BatchNormalization()(x)
+    x = Dropout(0.3)(x)
     x = Conv1D(128, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+
     x=LayerNormalization(-2)(x)
     x = BatchNormalization()(x)
     x = Dropout(0.3)(x)
     x = Conv1D(128, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x=LayerNormalization(-2)(x)
+    x = BatchNormalization()(x)
+    x = Dropout(0.3)(x)
     x = Conv1D(128, kernel_size=kernel_conv, strides=strides_conv,dilation_rate=dilation_rate, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
     x=LayerNormalization(-2)(x)
     x = BatchNormalization()(x)
     x = Dropout(0.3)(x)
     x = MaxPooling1D(pool_size=2)(x)
     x = Conv1D(512, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x=LayerNormalization(-2)(x)
+    x = BatchNormalization()(x)
+    x = Dropout(0.3)(x)
     x = Conv1D(512, kernel_size=kernel_conv, strides=strides_conv,dilation_rate=dilation_rate, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
     x=LayerNormalization(-2)(x)
     x = BatchNormalization()(x)
     x = Dropout(0.3)(x)
     x = Conv1D(512, kernel_size=kernel_conv, strides=strides_conv,dilation_rate=dilation_rate, padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001))(x)
+    x=LayerNormalization(-2)(x)
+    x = BatchNormalization()(x)
+    x = Dropout(0.3)(x)
     x = Conv1D(512, kernel_size=kernel_conv, strides=strides_conv, dilation_rate=dilation_rate,padding="same", activation="elu",kernel_regularizer=regularizers.l2(0.0001), name='last_conv')(x)
     x=LayerNormalization(-2)(x)
     x = BatchNormalization()(x)
@@ -344,37 +371,37 @@ one_hot_output = one_hot_output.numpy()
 
 # plotear las salidas de la red neuronal con el ecg
 #
-# for i in np.arange(len(lista_paths_test_x)):
-#
-#
-#
-#
-#     ecg_actual=np.asarray(np.loadtxt(lista_paths_test_x[i])).astype(np.float32)
-#     decoder_string="F = 0\nN = 1\nQ = 2\nS = 3\nV = 4\nZ = 5"
-#     plt.plot(ecg_actual[:,0]+1,label=decoder_string)
-#     plt.title(str(i)+": "+lista_paths_test_x[i][29:-4])
-#     etiquetasactuales= np.asarray(np.loadtxt(lista_paths_test_y[i], delimiter=',')).astype(np.float32)
-#     for k in np.arange(5):
-#
-#
-#
-#         plt.plot(np.arange(len(one_hot_output[i])),one_hot_output[i][:,k],label="PRED: "+str(k))
-#         plt.plot(etiquetasactuales[:,k]-0.05-(k/100), label="ORIG: "+str(k))
-#
-#     plt.plot(np.arange(len(one_hot_output[i])),one_hot_output[i][:,5]-0.4,label="PRED: "+str(5),color="brown")
-#     plt.plot(etiquetasactuales[:,5]-0.45, label="ORIG: "+str(5),color="black")
-#
-#
-#     plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-#     plt.subplots_adjust(right=0.75)
-#
-#     os.makedirs("plots", exist_ok=True)
-#
-#     # Guardar la figura en la carpeta con un nombre único
-#     # plt.savefig("plots/" +str(i)+": "+lista_paths_test_x[i][29:-4]+ ".png")
-#     #
-#     plt.show()
-#     plt.figure()
+for i in np.arange(len(lista_paths_test_x)):
+
+
+
+
+    ecg_actual=np.asarray(np.loadtxt(lista_paths_test_x[i])).astype(np.float32)
+    decoder_string="F = 0\nN = 1\nQ = 2\nS = 3\nV = 4\nZ = 5"
+    plt.plot(ecg_actual[:,0]+1,label=decoder_string)
+    plt.title(str(i)+": "+lista_paths_test_x[i][29:-4])
+    etiquetasactuales= np.asarray(np.loadtxt(lista_paths_test_y[i], delimiter=',')).astype(np.float32)
+    for k in np.arange(5):
+
+
+
+        plt.plot(np.arange(len(one_hot_output[i])),one_hot_output[i][:,k],label="PRED: "+str(k))
+        plt.plot(etiquetasactuales[:,k]-0.05-(k/100), label="ORIG: "+str(k))
+
+    plt.plot(np.arange(len(one_hot_output[i])),one_hot_output[i][:,5]-0.4,label="PRED: "+str(5),color="brown")
+    plt.plot(etiquetasactuales[:,5]-0.45, label="ORIG: "+str(5),color="black")
+
+
+    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+    plt.subplots_adjust(right=0.75)
+
+    os.makedirs("plots", exist_ok=True)
+
+    # Guardar la figura en la carpeta con un nombre único
+    plt.savefig("plots/" +str(i)+": "+lista_paths_test_x[i][29:-4]+ ".png")
+    #
+    plt.show()
+    plt.figure()
 #
 
 
