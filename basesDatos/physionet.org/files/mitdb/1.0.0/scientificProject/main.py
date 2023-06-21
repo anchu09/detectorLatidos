@@ -110,15 +110,15 @@ factor= int(len(numeros_posibles)*0.3) #proporcion train/test
 #         x_train.append(numero)
 
 
-x_train, x_test = train_test_split(numeros_posibles,test_size=factor,stratify= label_per_file)
-#
-# x_train=['100','102','104','105','106','109','111','113','114','116','117','118','119','121','122','124','200','203','205','207','208','209','210','212','213','214','217','219','220','221','228','232','233','234']
-# x_test=['101','103','107','108','112','115','123','201','202','215','222','223','230','231']
-# print(len(x_test)+len(x_train))
-# print(len(numeros_posibles))
-# for datos in x_train:
-#     if datos in x_test:
-#         print(datos)
+# x_train, x_test = train_test_split(numeros_posibles,test_size=factor,stratify= label_per_file)
+
+x_train=['100','101','102','105','106','107','108','109','111','112','114','115','117','118','121','122','123','200','203','207','210','213','214','215','217','219','220','222','223','228','230','232','233','234']
+x_test=['103','104','113','116','119','124','201','202','205','208','209','212','221','231']
+print(len(x_test)+len(x_train))
+print(len(numeros_posibles))
+for datos in x_train:
+    if datos in x_test:
+        print(datos)
 x_train=sorted(x_train)
 x_test=sorted(x_test)
 
@@ -356,7 +356,7 @@ test_predictions = model.predict(datasettest)
 
 
 #para el ancho de la mooving average le paso un segundo que es lo que mide un latido a ver como sale
-L=61
+L=31
 b=define_ma(L)
 
 for i in np.arange(len(test_predictions)):
@@ -390,7 +390,7 @@ for i in np.arange(len(lista_paths_test_x)):
 
     plt.plot(np.arange(len(one_hot_output[i])),one_hot_output[i][:,5]-0.4,label="PRED: "+str(5),color="brown")
     plt.plot(etiquetasactuales[:,5]-0.45, label="ORIG: "+str(5),color="black")
-
+    plt.ylim(0.25,)
 
     plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
     plt.subplots_adjust(right=0.75)
