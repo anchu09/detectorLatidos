@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b1f86c59-60db-442a-bde4-6a81145b2977" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../hola.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/scientificProject.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anotacionesresumidas.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cambiardelim.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diferentes_transformers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocesamiento.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/randomTransformations.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/receptive field.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/troceo.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2PKi133v9t15ONAJ5Z6LoexjiGO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/dani/tfg/detectorLatidos/basesDatos/physionet.org/files/mitdb/1.0.0/heartbeat_detector",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="scientificProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="randomTransformations" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="scientificProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/randomTransformations.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.randomTransformations" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b1f86c59-60db-442a-bde4-6a81145b2977" name="Changes" comment="" />
+      <created>1683211956294</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1683211956294</updated>
+      <workItem from="1683211959028" duration="2856000" />
+      <workItem from="1683215748152" duration="320000" />
+      <workItem from="1683216380686" duration="974000" />
+      <workItem from="1683217469854" duration="592000" />
+      <workItem from="1683213270633" duration="15327000" />
+      <workItem from="1683239916732" duration="4077000" />
+      <workItem from="1683245356511" duration="14737000" />
+      <workItem from="1683291239063" duration="4951000" />
+      <workItem from="1683302158487" duration="7049000" />
+      <workItem from="1683313527677" duration="2969000" />
+      <workItem from="1683317879978" duration="16957000" />
+      <workItem from="1683403788660" duration="2893000" />
+      <workItem from="1683623423207" duration="1195000" />
+      <workItem from="1683747497066" duration="599000" />
+      <workItem from="1683796430293" duration="4405000" />
+      <workItem from="1683838792045" duration="1342000" />
+      <workItem from="1683899612727" duration="28885000" />
+      <workItem from="1684217709323" duration="754000" />
+      <workItem from="1684257838367" duration="480000" />
+      <workItem from="1684326704455" duration="4406000" />
+      <workItem from="1684331119050" duration="6692000" />
+      <workItem from="1684350952354" duration="9827000" />
+      <workItem from="1684444193721" duration="10728000" />
+      <workItem from="1684531602640" duration="8570000" />
+      <workItem from="1684600514813" duration="2516000" />
+      <workItem from="1684625739070" duration="1706000" />
+      <workItem from="1684649485765" duration="4851000" />
+      <workItem from="1684722578071" duration="2642000" />
+      <workItem from="1684751354523" duration="25945000" />
+      <workItem from="1684849217180" duration="18578000" />
+      <workItem from="1684914463082" duration="9986000" />
+      <workItem from="1685147062701" duration="12740000" />
+      <workItem from="1685256889072" duration="2276000" />
+      <workItem from="1685282902102" duration="6808000" />
+      <workItem from="1685359268369" duration="5054000" />
+      <workItem from="1685380124269" duration="11734000" />
+      <workItem from="1685450771680" duration="22279000" />
+      <workItem from="1685576830482" duration="1507000" />
+      <workItem from="1685579380885" duration="2090000" />
+      <workItem from="1685582780033" duration="5112000" />
+      <workItem from="1685589919838" duration="6343000" />
+      <workItem from="1685710612425" duration="3094000" />
+      <workItem from="1685750796770" duration="11570000" />
+      <workItem from="1685847475182" duration="3491000" />
+      <workItem from="1686051098942" duration="7996000" />
+      <workItem from="1686083713604" duration="2336000" />
+      <workItem from="1686266922727" duration="9987000" />
+      <workItem from="1686446043445" duration="10851000" />
+      <workItem from="1686734392203" duration="2621000" />
+      <workItem from="1686786154066" duration="6867000" />
+      <workItem from="1686917767288" duration="3437000" />
+      <workItem from="1687085067343" duration="2079000" />
+      <workItem from="1687287208944" duration="3512000" />
+      <workItem from="1687769312286" duration="956000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/scientificProject$scientificProject.coverage" NAME="scientificProject Coverage Results" MODIFIED="1682622726332" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/scientificProject$anotacionesresumidas.coverage" NAME="anotacionesresumidas Coverage Results" MODIFIED="1682256259089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/scientificProject$randomTransformations.coverage" NAME="randomTransformations Coverage Results" MODIFIED="1686053315803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/scientificProject$main.coverage" NAME="main Coverage Results" MODIFIED="1687287439130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
